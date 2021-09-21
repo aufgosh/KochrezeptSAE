@@ -1,12 +1,20 @@
-<?php include("./req/template/header.php") ?>
+<?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/req/template/header.php";
+   include_once($path);
+?>
 
   <body class="text-center">
 
     <div class="container margin-auto">
       <div class="inner-main center">
         <h4>Willkommen bei</h3>
-        <a href="/login"><h1 class="heading-main">Coogle</h1></a>
+        <a href="/account/login"><h1 class="heading-main">Coogle</h1></a>
       </div>
     </div>
 
-    <?php include("./req/template/footer.php") ?>
+    <?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/req/template/footer.php";
+   include_once($path);
+?>

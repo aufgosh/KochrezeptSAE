@@ -12,8 +12,8 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
 
     <!-- Bootstrap core CSS -->
-    <link href="./style/bootstrap.min.css" rel="stylesheet">
+    <link href="/style/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="./style/styles.css" rel="stylesheet">
+    <link href="/style/styles.css" rel="stylesheet">
   </head>

@@ -123,9 +123,11 @@ body {
 }
 
 .log-form {
-    height: 400px;
+    min-height: 400px;
     background-color: #fff;
     border-radius: 5px;
+    padding-bottom: 30px;
+    border: 1px solid rgba(15,15,16,0.7);
 }
 
 .form-login {
@@ -141,8 +143,8 @@ body {
     color: #495057;
 }
 
-.btn-lavender {
-    background: lavender !important;
+.btn-blue {
+    background: rgba(123, 148, 220, 0.75) !important;
     color: #fff;
 }
 
@@ -163,8 +165,24 @@ body {
     border-top-right-radius: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: lavender;
+    background: rgba(123, 148, 220, 0.75);
     color: #fff;
+}
+
+.small-link {
+    color: #495057 !important;
+    text-decoration: underline;
+}
+
+.log-form .small-link {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.log-form .small-link:hover {
+    text-decoration: none;
+    transition: 0.2s;
+    color: black;
 }
 
 
