@@ -152,11 +152,11 @@ body {
     width: 200px;
 }
 
-.btn-lavender:hover {
-    border: 1px solid lavender;
+.btn-blue:hover {
+    border: 1px solid rgba(123, 148, 220, 0.75);
     transition: 0.2s;
     background: #fff !important;
-    color: lavender;
+    color: rgba(123, 148, 220, 0.75);
 }
 
 
