@@ -24,10 +24,14 @@
 
             <h1>Dein Profil</h1>
             <div class="container padding-zero">
-                <div class="profile-banner">
+                <div class="profile-banner" style="background-image: url('https://www.partyfest.de/wp-content/uploads/2015/04/minions-top-banner.jpg');">
                     <div class="profile-picture">
-                    <img src="https://avatars.githubusercontent.com/u/42834590?v=4">
+                        <img src="https://avatars.githubusercontent.com/u/42834590?v=4">
                     </div>
+                    <h3>Username</h3>
+                </div>
+                <div class="container profile-content">
+
                 </div>
             </div>
 

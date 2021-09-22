@@ -183,12 +183,32 @@ a.article:hover {
 
 .profile-banner {
     border-radius: 5px;
-    border: 2px dashed #ddd;
-    height: 300px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    height: 375px;
+    background-size:100% 100%;
+}
+
+
+
+.profile-banner h3 {
+    text-align: center;
+    color: rgba(0,0,0,.7);
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    margin: auto;
+    background: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-content {
+    margin-top: 30px;
+    height: 400px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .profile-picture {
-    height: inherit !important;
+    height: 300px;
     margin: auto;
     text-align: center;
     display: flex;
