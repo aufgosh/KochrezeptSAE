@@ -12,7 +12,6 @@
    $path .= "/req/template/sidebar.php";
    include_once($path);
 ?>
-
 <div class="container">
         <!-- Page Content  -->
         <div id="content">
@@ -23,18 +22,18 @@
    include_once($path);
 ?>
 
-            <h1>Neuste Rezepte</h1>
-            <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/recipe-list-template.php";
-   include($path);
-   include($path);
-   include($path);
-?>
+            <h1>Dein Profil</h1>
+            <div class="container padding-zero">
+                <div class="profile-banner">
+                    <div class="profile-picture">
+                    <img src="https://avatars.githubusercontent.com/u/42834590?v=4">
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
-    </div>
+</div>
 
     <?php 
    $path = $_SERVER['DOCUMENT_ROOT'];

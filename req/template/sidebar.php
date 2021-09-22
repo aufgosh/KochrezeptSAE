@@ -9,7 +9,7 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Home 1</a>
+                            <a href="/main/index">Neuste Rezepte</a>
                         </li>
                         <li>
                             <a href="#">Home 2</a>
@@ -22,6 +22,9 @@
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Account</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="/main/profile">Profil</a>
+                        </li>
                         <li>
                             <a href="#">Einstellungen</a>
                         </li>

@@ -177,6 +177,31 @@ a.article:hover {
     width: 272.4px;
 }
 
+.padding-zero {
+    padding: 0;
+}
+
+.profile-banner {
+    border-radius: 5px;
+    border: 2px dashed #ddd;
+    height: 300px;
+}
+
+.profile-picture {
+    height: inherit !important;
+    margin: auto;
+    text-align: center;
+    display: flex;
+}
+
+.profile-picture img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    max-height: 200px;
+    margin: auto;
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
