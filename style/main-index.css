@@ -157,6 +157,7 @@ a.article:hover {
     width: 300px;
 }
 
+
 .recipe-h3 {
     margin-bottom: 30px;
 }
@@ -199,6 +200,20 @@ a.article:hover {
     margin: auto;
     background: white;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-ul-styling {
+    padding-left: 15px;
+}
+
+.recipe-container {
+    margin-top: 50px;
+}
+
+.recipe-container .recipe-image {
+    border-radius: 5%;
+    height: auto;
+    width: 100%;
 }
 
 .profile-content {
