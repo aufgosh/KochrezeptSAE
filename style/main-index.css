@@ -151,6 +151,32 @@ a.article:hover {
     transition: all 0.3s;
 }
 
+.recipe-image {
+    border-radius: 7%;
+    height: auto;
+    width: 300px;
+}
+
+.recipe-h3 {
+    margin-bottom: 30px;
+}
+
+.btn-blue {
+    background: rgba(123, 148, 220, 0.75) !important;
+    color: #fff;
+}
+
+.btn-blue:hover {
+    border: 1px solid rgba(123, 148, 220, 0.75);
+    transition: 0.2s;
+    background: #fff !important;
+    color: rgba(123, 148, 220, 0.75);
+}
+
+.recipe-btn {
+    width: 272.4px;
+}
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
