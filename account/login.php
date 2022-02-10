@@ -11,14 +11,14 @@
     <div class="inner-main center col-md-10 col-lg-8">
     <div class="log-form">
   <h2>Melde dich in deinem Konto an</h2>
-  <form class="form-login">
+  <form class="form-login" method="POST">
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="email" class="form-control" id="username" aria-describedby="" placeholder="username">
+    <input type="email" name="email" class="form-control" id="username" aria-describedby="" placeholder="username">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Passwort</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="passwort">
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="passwort">
   </div>
   <button type="submit" class="btn btn-blue btn-login">Einloggen</button>
   <a href="/account/register"><small id="register" class="form-text text-muted small-link">Noch kein Konto?</small></a>
