@@ -27,6 +27,7 @@
             <div class="row">
                 <div class="col-md-4">
                 <img class="recipe-image" src="https://img.chefkoch-cdn.de/rezepte/745721177147257/bilder/668335/crop-960x540/lasagne.jpg">
+                <p>von cedric</p>
                 </div>
                 <div class="col-md-6">
                     <h3>Rezept beschreibung</h3>

@@ -32,6 +32,9 @@
                             <a href="#">Rezepte</a>
                         </li>
                         <li>
+                            <a href="/main/create_recipe">Rezept erstellen</a>
+                        </li>
+                        <li>
                             <a href="#">Favoriten</a>
                         </li>
                     </ul>
