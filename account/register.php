@@ -11,7 +11,7 @@
     <div class="inner-main center col-md-10 col-lg-8">
     <div class="log-form">
   <h2>Registriere dein Konto</h2>
-  <form class="form-login">
+  <form class="form-login" method="GET">
   <div class="form-group">
     <label for="username">Username</label>
     <input type="email" class="form-control" id="username" aria-describedby="" placeholder="username">
@@ -24,7 +24,7 @@
     <label for="repeatPassword">Passwort erneut eingeben</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="passwort">
   </div>
-  <button type="submit" class="btn btn-blue btn-login">Registrieren</button>
+  <button type="submit" name="submit" class="btn btn-blue btn-login">Registrieren</button>
   <a href="/account/login"><small id="register" class="form-text text-muted small-link">Bereits ein Konto?</small></a>
 </form>
 </div><!--end log form -->
