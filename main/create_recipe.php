@@ -27,11 +27,15 @@
                 <div class="col-md-9">
                     <h3>Rezeptname</h3>
                     <input required placeholder="Rezeptname" class="create-recipe-recipe-name" name="recipename" style="width: 100%;"></input>
-
+                    <br>
+                    <br>
                     <h3>Rezept beschreibung</h3>
                     <textarea name="recipe-description" required></textarea>
+                    <br>
+                    <br>
                 <h3>Benötigte Zutaten</h3>
                 <ul class="recipe-ul-styling">
+                <br>
                     <div class="row">
                         <div class="col-md-6">
                         <li><input name="recipe-ingredient-1" placeholder="Zutat 1"></input></li>
@@ -53,6 +57,7 @@
                         </div>
                     </div>
                 </ul>
+                <br>
                 <h3>Zubereitung</h3>
                 <textarea name="recipe-description" required></textarea>
                 <br>
