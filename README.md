@@ -5,7 +5,7 @@ KochrezeptApp for SAE
 https://pastebin.com/yeXigegg
 
 <h1>SQL Script for creating Database</h1>
-https://pastebin.com/5M9CSr0L
+https://pastebin.com/X9AgsaAE
 
 <h1>libarys used</h1>
 getbootstrap.com
