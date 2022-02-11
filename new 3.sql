@@ -1,4 +1,3 @@
--- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -49,7 +48,10 @@ CREATE TABLE IF NOT EXISTS `rezept`.`Nutzer` (
   `UserName` VARCHAR(45) NULL,
   `Passwd` VARCHAR(255) NULL
     );
-
+INSERT INTO Nutzer
+	(`NutzerID`, `UserName`, `Passwd`)
+VALUES
+	(1, "Lehrer", "d3f174c74ac93dcb59c40655c475db64690fdefb09e94a9cdf463f76517371bf");
 
 
 -- -----------------------------------------------------

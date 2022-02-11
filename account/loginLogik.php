@@ -1,5 +1,4 @@
 <?php
-// Initialize the session
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: /main/index");
@@ -15,7 +14,7 @@ $username_err = $password_err = $login_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- echo "test4";
+
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
@@ -23,37 +22,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username = trim($_POST["username"]);
     }
     
-    // Check if password is empty
+    // Check if password is empty and give an error if epmty
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter your password.";
     } else{
         $password = trim($_POST["password"]);
     }
-    
-    echo "test2";
 
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
         $sql = "SELECT NutzerID, UserName, Passwd FROM nutzer WHERE UserName = ?";
-        echo "test3";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
-            // Set parameters
+            // Set parameters and hash the password so it can be checked with the hash in the DB.
             $param_username = $username;
             $hashed_password = hash('sha256', $password);
             
             $password_from_ui = hash('sha256', $password);
 
-            echo "<br>";
+            /*echo "<br>";
 
             echo $hashed_password;
             echo "<br>";
             echo $password_from_ui;
-            echo "<br>";
+            echo "<br>";*/
 
 
             // Attempt to execute the prepared statement
@@ -65,19 +61,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                    echo "pswd test";
                     if(mysqli_stmt_fetch($stmt)){
-                        echo "pswd test5";
+                        
+                        /*echo "pswd test5";
                         echo "<br>";
 
                         echo $hashed_password;
                         echo "<br>";
                         echo $password_from_ui;
-                        echo "<br>";
-
+                        echo "<br>";*/
+                        
+                        //Check if password is correct 
                         if($password_from_ui == $hashed_password){
                             // Password is correct, so start a new session
-                            echo "test";
                             session_start();
                             
                             // Store data in session variables
@@ -96,6 +92,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 } else{
                     // Username doesn't exist, display a generic error message
                     $login_err = "Invalid username or password.";
+                    echo $login_err;
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
