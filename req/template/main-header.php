@@ -1,5 +1,10 @@
 <?php 
 session_start();
+if(isset($_SESSION['username'])) {
+    
+} else {
+    header("location: ../account/login");
+}
 ?>
 
 <!DOCTYPE html>

@@ -4,7 +4,7 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>Willkommen, User!</p>
+                <p>Willkommen, <?php echo$_SESSION['username']?>!</p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -40,7 +40,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/">Logout</a>
+                    <a href="../account/logout">Logout</a>
                 </li>
             </ul>
         </nav>
