@@ -23,7 +23,7 @@
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Account</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="/main/profile">Profil</a>
+                            <a href="/main/profile?id=<?php echo $_SESSION["id"]?> ">Profil</a>
                         </li>
                         <li>
                             <a href="#">Einstellungen</a>
