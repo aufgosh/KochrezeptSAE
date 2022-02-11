@@ -35,15 +35,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT NutzerID, UserName, Passwd FROM nutzer WHERE Username = ?";
+        $sql = "SELECT NutzerID, UserName, Passwd FROM nutzer WHERE UserName = ?";
         echo "test3";
+
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
             // Set parameters
             $param_username = $username;
+            $hashed_password = hash('sha256', $password);
             
+            $password_from_ui = hash('sha256', $password);
+
+            echo "<br>";
+
+            echo $hashed_password;
+            echo "<br>";
+            echo $password_from_ui;
+            echo "<br>";
+
+
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Store result
@@ -56,7 +68,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     echo "pswd test";
                     if(mysqli_stmt_fetch($stmt)){
                         echo "pswd test5";
-                        if(password_verify($password, $hashed_password)){
+                        echo "<br>";
+
+                        echo $hashed_password;
+                        echo "<br>";
+                        echo $password_from_ui;
+                        echo "<br>";
+
+                        if($password_from_ui == $hashed_password){
                             // Password is correct, so start a new session
                             echo "test";
                             session_start();
@@ -71,6 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         } else{
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";
+                            echo $login_err;
                         }
                     }
                 } else{
