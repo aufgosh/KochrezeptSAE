@@ -49,7 +49,10 @@ CREATE TABLE IF NOT EXISTS `rezept`.`Nutzer` (
   `UserName` VARCHAR(45) NULL,
   `Passwd` VARCHAR(255) NULL
     );
-
+INSERT INTO Nutzer
+	(`NutzerID`, `UserName`, `Passwd`)
+VALUES
+	(1, "Lehrer", "d3f174c74ac93dcb59c40655c475db64690fdefb09e94a9cdf463f76517371bf");
 
 
 -- -----------------------------------------------------
