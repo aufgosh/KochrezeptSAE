@@ -26,11 +26,11 @@
             <div class="row">
                 <div class="col-md-9">
                     <h3>Rezeptname</h3>
-                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" name="recipename" style="width: 100%;"></input>
+                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" style="width: 100%;"><?php $txtRezeptName; ?></input>
                     <br>
                     <br>
                     <h3>Rezept beschreibung</h3>
-                    <textarea name="recipe-description" required></textarea>
+                    <textarea required><?php $RezeptBeschreibung; ?></textarea>
                     <br>
                     <br>
                 <h3>Benötigte Zutaten</h3>
@@ -38,35 +38,35 @@
                 <br>
                     <div class="row">
                         <div class="col-md-6">
-                        <li><input name="recipe-ingredient-1" placeholder="Zutat 1"></input></li>
+                        <li><input placeholder="Zutat 1"><?php $txtZutat1; ?></input></li>
                     <br>
-                    <li><input name="recipe-ingredient-2" placeholder="Zutat 2"></input></li>
+                    <li><input placeholder="Zutat 2"><?php $txtZutat2; ?></input></li>
                     <br>
-                    <li><input name="recipe-ingredient-3" placeholder="Zutat 3"></input></li>
+                    <li><input placeholder="Zutat 3"><?php $txtZutat3; ?></input></li>
                     <br>
-                    <li><input name="recipe-ingredient-4" placeholder="Zutat 4"></input></li>
+                    <li><input placeholder="Zutat 4"><?php $txtZutat4; ?></input></li>
                         </div>
                         <div class="col-md-6">
-                        <li><input name="recipe-ingredient-5" placeholder="Zutat 5"></input></li>
+                        <li><input placeholder="Zutat 5"><?php $txtZutat5; ?></input></li>
                     <br>
-                    <li><input name="recipe-ingredient-6" placeholder="Zutat 6"></input></li>
+                    <li><input placeholder="Zutat 6"><?php $txtZutat6; ?></input></li>
                     <br>
-                    <li><input name="recipe-ingredient-7" placeholder="Zutat 7"></input></li>
+                    <li><input placeholder="Zutat 7"><?php $txtZutat7; ?></input></li>
                     <br>
-                    <li><input name="recipe-ingredient-8" placeholder="Zutat 8"></input></li>
+                    <li><input placeholder="Zutat 8"><?php $txtZutat8; ?></input></li>
                         </div>
                     </div>
                 </ul>
                 <br>
                 <h3>Zubereitung</h3>
-                <textarea name="recipe-description" required></textarea>
+                <textarea required><?php $RezeptZubereitung; ?></textarea>
                 <br>
                 <br>
                 <h3>Bild hochladen</h3>
-                <input type="file" name="image-file-upload" required>
+                <input type="file" name="image-file-upload" required <?php $Bild; ?>>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-blue btn-login">Rezept erstellen</button>
+                <button type="submit" class="btn btn-blue btn-login" name="Erstellen">Rezept erstellen</button>
                 </div>
             </div>
             </div>
