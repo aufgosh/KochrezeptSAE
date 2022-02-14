@@ -79,8 +79,7 @@ INSERT INTO gericht
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rezept`.`zutaten` (
   `idZutaten` INT(11) NOT NULL,
-  `Name` VARCHAR(255) NULL DEFAULT NULL,
-  `Menge` INT(11) NULL DEFAULT NULL,
+  `Zutat` VARCHAR(255) NULL DEFAULT NULL,
   `gericht_GerichtID` INT(11) NOT NULL,
   PRIMARY KEY (`idZutaten`),
     FOREIGN KEY (`gericht_GerichtID`)
@@ -89,9 +88,9 @@ CREATE TABLE IF NOT EXISTS `rezept`.`zutaten` (
     ON UPDATE NO ACTION)
 DEFAULT CHARACTER SET = utf8;
 INSERT INTO zutaten 
-  (`idZutaten`, `Name`, `Menge`, `gericht_GerichtID`)
+  (`idZutaten`, `Zutat`, `gericht_GerichtID`)
 VALUES
-  (1,"Salz","300",1);
+  (1,"350ml Milch",1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
