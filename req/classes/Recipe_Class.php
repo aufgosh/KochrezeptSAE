@@ -1,7 +1,7 @@
 <?php
 require_once "../req/sql.php";
 class Recipe_Class {
-    private $rezepte = array();
+
     private $id;
     private $RezeptName;
     private $RezeptBeschreibung;
@@ -87,13 +87,5 @@ class Recipe_Class {
     return $pcliste;
     }
     */
-
-    public function addRecipe($recipe){
-        if($recipe instanceof Recipe_Class){            
-            $this->rezepte[$this->anzahlPCs]=$recipe;
-            $this->anzahlPCs++;
-        }
-    }
-
 }
 ?>

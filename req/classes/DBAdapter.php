@@ -32,8 +32,8 @@ class DBAdapter {
 
         $recipe = new Recipe_Class();
 
-        $query = 'SELECT Name, Zubereitungsanleitung, Bild, Beschreibung, Zutat1, Zutat2, Zutat3,
-        Zutat4, Zutat5, Zutat6, Zutat7, Zutat8 FROM gericht WHERE GerichtID =' .$RecipeID;
+        $query = 'SELECT Name, Zubereitungsanleitung, Bild, Beschreibung,
+         FROM gericht WHERE GerichtID =' .$RecipeID;
                 $result = $this->connector->query($query) or die($this->connector->error);
                 $row = $result->fetch_assoc();
                 if($row) {
