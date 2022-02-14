@@ -57,7 +57,7 @@ class DbAdapter
 
     }
 
-    public function listRecipes(User_Class $user = null)
+    public function listRecipes($id = null)
     {
         $query = "SELECT * FROM gericht ORDER BY GerichtID DESC ";
         $result = $this->connector->query($query) or die($this->connector->error);
@@ -66,7 +66,7 @@ class DbAdapter
 
         $counter = 0;
         while ($row = $result->fetch_assoc()) {
-            if (null === $user || $row['nutzer_NutzerID'] === $user->getID()) {
+            if (null === $id || $row['nutzer_NutzerID'] === $id) {
                 $allRecipes[$counter] = new Recipe();
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
