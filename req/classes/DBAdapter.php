@@ -26,10 +26,5 @@ class DBAdapter {
         return $user;
         
     }
-
-
-
 }
-
-
 ?>
