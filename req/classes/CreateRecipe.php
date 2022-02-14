@@ -2,8 +2,6 @@
 require_once "../main/create_recipe_GUI.php";
 //require_once "main/Recipe_Class.php";
 require_once "./main/Recipe_Class.php";
-$dbAdapter = new DBAdapter;
-$rezept = new Rezept;
 
     if(isset($POST['Erstellen'])){
 	$Rezep2tName=$_POST['txtRezeptName'];
