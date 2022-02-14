@@ -26,14 +26,17 @@ CREATE TABLE IF NOT EXISTS `rezept`.`kategorie` (
   PRIMARY KEY (`idKategorie`))
 
 DEFAULT CHARACTER SET = utf8;
-
+INSERT INTO kategorie
+  (`idKategorie`, `Kategorie`)
+VALUES
+  (1, "hauptspeisen");
 
 -- -----------------------------------------------------
 -- Table `rezept`.`nutzer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rezept`.`nutzer` (
   `NutzerID` INT(11) NOT NULL AUTO_INCREMENT,
-  `UserName` VARCHAR(45) NULL DEFAULT NULL,
+  `UserName` VARCHAR(255) NULL DEFAULT NULL,
   `Passwd` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`NutzerID`))
 
@@ -49,10 +52,10 @@ VALUES
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `GerichtID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(45) NULL DEFAULT NULL,
-  `Zubereitungsanleitung` VARCHAR(45) NULL DEFAULT NULL,
-  `Bild` VARCHAR(45) NULL DEFAULT NULL,
-  `Anzahl Personen` VARCHAR(45) NULL DEFAULT NULL,
+  `Name` VARCHAR(255) NULL DEFAULT NULL,
+  `Zubereitungsanleitung` VARCHAR(255) NULL DEFAULT NULL,
+  `Bild` VARCHAR(255) NULL DEFAULT NULL,
+  `Anzahl Personen` VARCHAR(255) NULL DEFAULT NULL,
   `kategorie_idKategorie` INT(11) NOT NULL,
   `nutzer_NutzerID` INT(11) NOT NULL,
   PRIMARY KEY (`GerichtID`),
@@ -67,14 +70,17 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
     ON UPDATE NO ACTION)
 
 DEFAULT CHARACTER SET = utf8;
-
+INSERT INTO gericht
+  (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Bild`,`Anzahl Personen`,`kategorie_idKategorie`,`nutzer_NutzerID`)
+  VALUES
+    (1,"Lasagne","Machen dies Machen das","Bild","2",1,1 );
 
 -- -----------------------------------------------------
 -- Table `rezept`.`zutaten`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rezept`.`zutaten` (
   `idZutaten` INT(11) NOT NULL,
-  `Name` VARCHAR(45) NULL DEFAULT NULL,
+  `Name` VARCHAR(255) NULL DEFAULT NULL,
   `Menge` INT(11) NULL DEFAULT NULL,
   `gericht_GerichtID` INT(11) NOT NULL,
   PRIMARY KEY (`idZutaten`),
@@ -83,7 +89,10 @@ CREATE TABLE IF NOT EXISTS `rezept`.`zutaten` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 DEFAULT CHARACTER SET = utf8;
-
+INSERT INTO zutaten 
+  (`idZutaten`, `Name`, `Menge`, `gericht_GerichtID`)
+VALUES
+  (1,"Salz","300",1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
