@@ -22,6 +22,8 @@
    include_once($path);
 
 
+        require_once "../req/classes/DBAdapter.php";
+
         $dbAdatapter = new DbAdapter();
         $recipe = $dbAdatapter->getRecipeById($_GET["id"]);
 ?>
