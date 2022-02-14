@@ -55,40 +55,41 @@ if(tag.length > 0) {
 else { inhere.appendChild(formfield); }
 } // function AddFormField()
 </script>
-
-            <div class="recipe-container">
-            <div class="row">
-                <div class="col-md-9">
-                    <h3>Rezeptname</h3>
-                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" style="width: 100%;"></input>
-                    <br>
-                    <br>
-                    <h3>Rezept beschreibung</h3>
-                    <textarea required></textarea>
-                    <br>
-                    <br>
-                <h3>Benötigte Zutaten</h3>
-                <br>
-                        <div class="col-md-8" id="recipediv">
-                        <ul class="recipe-ul-styling" id="forfields">
-                        <li><input type="text" name="gift0"></li>
+            <form ction="createRecipe.php" method="post" name="RezeptErstellen">
+                <div class="recipe-container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <h3>Rezeptname</h3>
+                            <input required placeholder="Rezeptname" class="create-recipe-recipe-name" style="width: 100%;" name="txtRezeptName"></input>
+                            <br>
+                            <br>
+                            <h3>Rezept beschreibung</h3>
+                            <textarea required name="txtRezeptBeschreiung"></textarea>
+                            <br>
+                            <br>
+                        <h3>Benötigte Zutaten</h3>
                         <br>
-                        </ul>
-                        <a href="javascript:AddFormField('forfields','text','','','li')">[Mehr Zutaten hinzufügen]</a>
+                                <div class="col-md-8" id="recipediv">
+                                <ul class="recipe-ul-styling" id="forfields">
+                                <li><input type="text" name="gift0"></li>
+                                <br>
+                                </ul>
+                                <a href="javascript:AddFormField('forfields','text','','','li')">[Mehr Zutaten hinzufügen]</a>
+                                </div>
+                        <br>
+                        <h3>Zubereitung</h3>
+                        <textarea required name="txtZubreitung"></textarea>
+                        <br>
+                        <br>
+                        <h3>Bild hochladen</h3>
+                        <input type="file" name="imageFilUpload" required>
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-blue btn-login" name="Erstellen">Rezept erstellen</button>
                         </div>
-                <br>
-                <h3>Zubereitung</h3>
-                <textarea required></textarea>
-                <br>
-                <br>
-                <h3>Bild hochladen</h3>
-                <input type="file" name="image-file-upload" required>
-                <br>
-                <br>
-                <button type="submit" class="btn btn-blue btn-login" name="Erstellen">Rezept erstellen</button>
+                    </div>
                 </div>
-            </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

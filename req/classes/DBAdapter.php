@@ -52,8 +52,14 @@ class DBAdapter {
                 
                 return $recipe;
 
-
-
     }
+
+    /*public function insertRecipe ( $RezeptName, $RezeptBeschreibung, $RezeptZubereitung, $imageFilUpload ) {
+        
+        $query = "INSERT INTO gericht (Name, Beschreibung, Anleitung, Bild)
+        VALUES ($RezeptName, $RezeptBeschreibung,$RezeptZubereitung, $Bild, )";
+
+        return $query;
+    }*/
 }
 ?>
