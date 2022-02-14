@@ -1,24 +1,84 @@
-<?php
-require_once "../main/create_recipe_GUI.php";
-//require_once "main/Recipe_Class.php";
-require_once "./main/Recipe_Class.php";
-
-    if(isset($POST['Erstellen'])){
-	$Rezep2tName=$_POST['txtRezeptName'];
-	$RezeptBeschreibung=$_POST['txtRezeptBeschreiung'];
-	$Zutat1=$_POST['txtZutat1'];
-	$Zutat2=$_POST['txtZutat2'];
-	$Zutat3=$_POST['txtZutat3'];
-	$Zutat4=$_POST['txtZutat4'];
-	$Zutat5=$_POST['txtZutat5'];
-	$Zutat6=$_POST['txtZutat6'];
-	$Zutat7=$_POST['txtZutat7'];
-	$Zutat8=$_POST['txtZutat8'];
-	$RezeptZubereitung=$_POST['txtZubreitung'];
-	$=$_POST['Bild'];
-    }
-    buildCreateRecipe();
-    
+<?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/req/template/main-header.php";
+   include_once($path);
+?>
 
 
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/req/template/sidebar.php";
+   include_once($path);
+?>
+<div class="container">
+        <!-- Page Content  -->
+        <div id="content">
+
+        <?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/req/template/index-navbar.php";
+   include_once($path);
+?>
+
+            <div class="recipe-container">
+            <div class="row">
+            <form action="..." method="post">
+                <div class="col-md-9">
+                    <h3>Rezeptname</h3>
+                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" style="width: 100%;"></input>
+                    <br>
+                    <br>
+                    <h3>Rezept beschreibung</h3>
+                    <textarea required></textarea>
+                    <br>
+                    <br>
+                <h3>Benötigte Zutaten</h3>
+                <ul class="recipe-ul-styling">
+                <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                        <li><input placeholder="Zutat 1" name="txtZutat1"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 2" name="txtZutat2"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 3" name="txtZutat3"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 4" name="txtZutat4"></input></li>
+                    <br>
+                        </div>
+                        <div class="col-md-6">
+                        <li><input placeholder="Zutat 5" name="txtZutat5"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 6" name="txtZutat6"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 7" name="txtZutat7"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 8" name="txtZutat8"></input></li>
+                        </div>
+                    </div>
+                </ul>
+                <br>
+                <h3>Zubereitung</h3>
+                <textarea required></textarea>
+                <br>
+                <br>
+                <h3>Bild hochladen</h3>
+                <input type="file" name="image-file-upload" required>
+                <br>
+                <br>
+                <button type="submit" class="btn btn-blue btn-login" name="Erstellen">Rezept erstellen</button>
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <?php 
+   $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/req/template/main-footer.php";
+   include_once($path);
 ?>
