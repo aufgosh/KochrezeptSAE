@@ -5,101 +5,67 @@ class Recipe_Class {
     private $id;
     private $RezeptName;
     private $RezeptBeschreibung;
-    private $Zutat1;
-    private $Zutat2;
-    private $Zutat3;
-    private $Zutat4;
-    private $Zutat5;
-    private $Zutat6;
-    private $Zutat7;
-    private $Zutat8;
+    private $Zutaten;
     private $RezeptZubereitung;
     private $Bild;
 
+    //Set und get für RezeptID
     public function setID($id){
         $this->id = $id;
     }
     public function getID() {
         return $this->id;
     }
+
+    //Set und get für Rezeptname
+    public function setRezeptName($RezeptName) {
+        $this->RezeptName = $RezeptName;
+    }
     public function getRezeptName() {
         return $this->RezeptName;
     }
-    public function setRezeptName() {
-        return $this->RezeptName;
+
+    //Set und get für Rezeptbeschreibung
+    public function setRezeptBeschreibung($RezeptBeschreibung) {
+        $this->RezeptBeschreibung = $RezeptBeschreibung;
     }
+
     public function getRezeptBeschreibung() {
         return $this->RezeptBeschreibung;
     }
-    public function setRezeptBeschreibung() {
-        return $this->RezeptBeschreibung;
+
+    //Set und get für RezeptZutaten
+    public function setZutaten($Zutaten) {
+        $this->Zutaten = $Zutaten;
     }
-    public function getZutat1() {
+
+    public function getZutaten() {
         return $this->Zutat1;
     }
-    public function setZutat1() {
-        return $this->Zutat1;
-    }    
-    public function getZutat2() {
-        return $this->Zutat2;
+
+    //Set und get für RezeptZubereitung
+    public function setRezeptZubereitung($RezeptZubereitung) {
+        $this->RezeptZubereitung = $RezeptZubereitung;
     }
-    public function setZutat2() {
-        return $this->Zutat2;
-    } 
-    public function getZutat3() {
-        return $this->Zutat1;
-    }
-    public function setZutat3() {
-        return $this->Zutat1;
-    }    
-    public function getZutat4() {
-        return $this->Zutat4;
-    }
-    public function setZutat4() {
-        return $this->Zutat4;
-    } 
-    public function getZutat5() {
-        return $this->Zutat5;
-    }
-    public function setZutat5() {
-        return $this->Zutat5;
-    } 
-    public function getZutat6() {
-        return $this->Zutat6;
-    }
-    public function setZutat6() {
-        return $this->Zutat6;
-    } 
-    public function getZutat7() {
-        return $this->Zutat7;
-    }
-    public function setZutat7() {
-        return $this->Zutat7;
-    } 
-    public function getZutat8() {
-        return $this->Zutat7;
-    }
-    public function setZutat8() {
-        return $this->Zutat7;
-    } 
+
     public function getRezeptZubereitung() {
         return $this->RezeptZubereitung;
     }
-    public function setRezeptZubereitung() {
-        return $this->RezeptZubereitung;
-    } 
+
+    //Set und get für RezeptBildPfad
+    public function setBild($Bild) {
+        $this->Bild = $Bild;
+    }
+
     public function getBild() {
         return $this->Bild;
     }
-    public function setBild() {
-        return $this->Bild;
-    } 
 
     public function buildCreateRecipe(
     $RezeptName, $RezeptBeschreibung, $Zutat1, 
     $Zutat2, $Zutat3, $Zutat4, 
     $Zutat5, $Zutat6, $Zutat7, 
-    $Zutat8, $RezeptZubereitung, 
+    $Zutat8, $RezeptZubereitung, $Bild,
     $ZutBildHochladenat8 ) {
         
         $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, Zutat1, Zutat2, Zutat3,
@@ -111,7 +77,7 @@ class Recipe_Class {
     }
 
     public function loadRecipes() {
-        $rezepte  
+        $rezepte;
         $pcliste=new PC_Liste();
         $sql = "SELECT $RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung,
             $Zutat1, $Zutat2, $Zutat3, $Zutat4, $Zutat5, $Zutat6, $Zutat7, $Zutat8 FROM tblpcs;";
@@ -144,9 +110,11 @@ class Recipe_Class {
         }
     }
 
+    /*
     public function getAllRecipes()
     {
-        for(int i= 0; i<)
+        for(int i= 0; i<);
     }
+    */
 }
 ?>

@@ -20,9 +20,13 @@
    $path = $_SERVER['DOCUMENT_ROOT'];
    $path .= "/req/template/index-navbar.php";
    include_once($path);
+
+
+        $dbAdatapter = new DbAdapter();
+        $recipe = $dbAdatapter->getRecipeById($_GET["id"]);
 ?>
 
-            <h1>Rezeptname</h1>
+            <h1><?= $recipe->getRezeptName(); ?></h1>
             <div class="recipe-container">
             <div class="row">
                 <div class="col-md-4">
@@ -40,9 +44,7 @@
                     <li>8x Malboro Gold</li>
                 </ul>
                 <h3>Zubereitung</h3>
-                <p>Zigaretten mit den Melonen gut vermischen, dann die Zigaretten-melonenpaste zusammen mit den Kühen in den Mixer
-                     werfen und zu guter letzt die Äpfel in scheiben schneiden und zur Zigaretten-melonen-Kuh paste dazu geben.
-                </p>
+                <p><?= $recipe->getRezeptZubereitung();?></p>
                 </div>
             </div>
             </div>

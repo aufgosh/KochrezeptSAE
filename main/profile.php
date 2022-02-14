@@ -2,7 +2,6 @@
    $path = $_SERVER['DOCUMENT_ROOT'];
    $path .= "/req/template/main-header.php";
    include_once($path);
-   require_once "../req/classes/DBAdapter.php";
 ?>
  
 
@@ -21,6 +20,8 @@
    $path = $_SERVER['DOCUMENT_ROOT'];
    $path .= "/req/template/index-navbar.php";
    include_once($path);
+
+   require_once "../req/classes/DBAdapter.php";
    $dbAdatapter = new DbAdapter();
    $user = $dbAdatapter->getUser($_GET["id"]);
 

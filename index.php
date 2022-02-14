@@ -8,7 +8,7 @@
 
     <div class="container margin-auto">
       <div class="inner-main center">
-        <h4>Willkommen bei</h3>
+        <h4>Willkommen bei</h4>
         <a href="/account/login"><h1 class="heading-main">Coogle</h1></a>
       </div>
     </div>

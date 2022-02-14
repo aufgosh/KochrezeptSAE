@@ -28,6 +28,32 @@ class DBAdapter {
         
     }
 
+    public function insertRecipe($name, $anleitung, $bild, $beschreibung, $category, $createdByUser) {
+
+        $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, `Anzahl Personen`, kategorie_idKategorie, nutzer_NutzerID) 
+                  VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$category', '$createdByUser')";
+        $this->connector->query($query) or die($this->connector->error);
+
+    }
+
+    public function getRecipeById($RecipeID) {
+
+        $recipe = new Recipe_Class();
+
+        $query = 'SELECT * FROM gericht WHERE GerichtID =' .$RecipeID;
+        $result = $this->connector->query($query) or die($this->connector->error);
+        $row = $result->fetch_assoc();
+        if($row) {
+            $recipe->setID($row['GerichtID']);
+            $recipe->setRezeptName($row['Name']);
+            $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
+
+        }
+
+        return $recipe;
+
+    }
+
     public function getRecipe($RecipeID) {
 
         $recipe = new Recipe_Class();
