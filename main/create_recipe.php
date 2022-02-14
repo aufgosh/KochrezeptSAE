@@ -38,22 +38,22 @@
                 <br>
                     <div class="row">
                         <div class="col-md-6">
-                        <li><input placeholder="Zutat 1"><?php $txtZutat1; ?></input></li>
+                        <li><input placeholder="Zutat 1" name="txtZutat1"></input></li>
                     <br>
-                    <li><input placeholder="Zutat 2"><?php $txtZutat2; ?></input></li>
+                    <li><input placeholder="Zutat 2" name="txtZutat2"></input></li>
                     <br>
-                    <li><input placeholder="Zutat 3"><?php $txtZutat3; ?></input></li>
+                    <li><input placeholder="Zutat 3" name="txtZutat3"></input></li>
                     <br>
-                    <li><input placeholder="Zutat 4"><?php $txtZutat4; ?></input></li>
+                    <li><input placeholder="Zutat 4" name="txtZutat4"></input></li>
                         </div>
                         <div class="col-md-6">
-                        <li><input placeholder="Zutat 5"><?php $txtZutat5; ?></input></li>
+                        <li><input placeholder="Zutat 5" name="txtZutat5"></input></li>
                     <br>
-                    <li><input placeholder="Zutat 6"><?php $txtZutat6; ?></input></li>
+                    <li><input placeholder="Zutat 6" name="txtZutat6"></input></li>
                     <br>
-                    <li><input placeholder="Zutat 7"><?php $txtZutat7; ?></input></li>
+                    <li><input placeholder="Zutat 7" name="txtZutat7"></input></li>
                     <br>
-                    <li><input placeholder="Zutat 8"><?php $txtZutat8; ?></input></li>
+                    <li><input placeholder="Zutat 8" name="txtZutat8"></input></li>
                         </div>
                     </div>
                 </ul>
