@@ -9,3 +9,8 @@ https://pastebin.com/X9AgsaAE
 
 <h1>libarys used</h1>
 getbootstrap.com
+
+<h1>Login für Lehrer<h1>
+Credentials:
+User: lehrer
+Passwd: lehrer
