@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href="/req/favico.ico">
+    <link rel="icon" type="image/x-icon" href="/reqSH/req/favico.ico">
 
     <title>Coogle</title>
 

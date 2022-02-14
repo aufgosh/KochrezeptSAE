@@ -1,5 +1,4 @@
-
-<?php 
+<?php
    $path = $_SERVER['DOCUMENT_ROOT'];
    $path .= "/req/template/header.php";
    include_once($path);
@@ -31,8 +30,7 @@
       </div>
     </div>
 
-    <?php 
+   <?php
    $path = $_SERVER['DOCUMENT_ROOT'];
    $path .= "/req/template/footer.php";
    include_once($path);
-?>

@@ -1,6 +1,6 @@
 <?php
-require_once "../req/classes/DBAdapter.php";
-$dbAdatapter = new DbAdapter();
+require_once "../Autoloader.php";
+$dbAdatapter = \Core\DbAdapter::getInstance();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     /*
     echo "<pre>";

@@ -16,7 +16,7 @@ if(isset($_SESSION['username'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Coogle - dein Rezeptportal!</title>
-    <link rel="icon" type="image/x-icon" href="/req/favico.ico">
+    <link rel="icon" type="image/x-icon" href="req/favico.ico">
 
 
     <!-- Bootstrap CSS CDN -->

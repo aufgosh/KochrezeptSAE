@@ -28,4 +28,3 @@ class User_Class{
         return $this->password;
     }
 }
-?>
