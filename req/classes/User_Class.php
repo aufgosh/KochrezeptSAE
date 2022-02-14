@@ -20,7 +20,7 @@ class User_Class{
         return $this->username;
     }
 
-    public function setPassword() {
+    public function setPassword($password) {
         $this->password = $password;
     }
 

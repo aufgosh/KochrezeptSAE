@@ -1,6 +1,5 @@
 <?php
 require_once "../req/classes/DBConnector.php";
-require_once "../req/sql.php";
 require_once "../req/classes/User_Class.php";
 class DBAdapter {
     private $connector=null;
@@ -21,7 +20,7 @@ class DBAdapter {
         if($row) {
             $user->setID($row['NutzerID']);
             $user->setUsername($row['UserName']);
-            $user->setPassword($row['Passwd'])
+            $user->setPassword($row['Passwd']);
         }
         
         return $user;
