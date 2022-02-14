@@ -45,6 +45,7 @@
                     <li><input placeholder="Zutat 3" name="txtZutat3"></input></li>
                     <br>
                     <li><input placeholder="Zutat 4" name="txtZutat4"></input></li>
+                    <br>
                         </div>
                         <div class="col-md-6">
                         <li><input placeholder="Zutat 5" name="txtZutat5"></input></li>
