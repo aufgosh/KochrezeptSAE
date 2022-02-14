@@ -22,40 +22,6 @@
    include_once($path);
 ?>
 
-<script type="text/javascript">
-// Copyright 2008 Bontrager Connection, LLC
-// https://www.willmaster.com/
-
-// When no form field name is provided, it is assumed 
-//   to be the default name with the default name 
-//   increment number appended.
-
-var DefaultName = "gift";
-var DefaultNameIncrementNumber = 0;
-
-// No further customizations required.
-function AddFormField(id,type,name,value,tag) {
-if(! document.getElementById && document.createElement) { return; }
-var inhere = document.getElementById(id);
-var formfield = document.createElement("input");
-var br = document.createElement("br");
-if(name.length < 1) {
-   DefaultNameIncrementNumber++;
-   name = String(DefaultName + DefaultNameIncrementNumber);
-   }
-formfield.name = name;
-formfield.type = type;
-formfield.value = value;
-if(tag.length > 0) {
-   var thetag = document.createElement(tag);
-   thetag.appendChild(formfield);
-   inhere.appendChild(thetag);
-   inhere.appendChild(br);
-   }
-else { inhere.appendChild(formfield); }
-} // function AddFormField()
-</script>
-
             <div class="recipe-container">
             <div class="row">
             <form action="..." method="post">
@@ -69,14 +35,30 @@ else { inhere.appendChild(formfield); }
                     <br>
                     <br>
                 <h3>Benötigte Zutaten</h3>
+                <ul class="recipe-ul-styling">
                 <br>
-                        <div class="col-md-8" id="recipediv">
-                        <ul class="recipe-ul-styling" id="forfields">
-                        <li><input type="text" name="gift0"></li>
-                        <br>
-                        </ul>
-                        <a href="javascript:AddFormField('forfields','text','','','li')">[Mehr Zutaten hinzufügen]</a>
+                    <div class="row">
+                        <div class="col-md-6">
+                        <li><input placeholder="Zutat 1" name="txtZutat1"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 2" name="txtZutat2"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 3" name="txtZutat3"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 4" name="txtZutat4"></input></li>
+                    <br>
                         </div>
+                        <div class="col-md-6">
+                        <li><input placeholder="Zutat 5" name="txtZutat5"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 6" name="txtZutat6"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 7" name="txtZutat7"></input></li>
+                    <br>
+                    <li><input placeholder="Zutat 8" name="txtZutat8"></input></li>
+                        </div>
+                    </div>
+                </ul>
                 <br>
                 <h3>Zubereitung</h3>
                 <textarea required></textarea>
