@@ -109,7 +109,7 @@ class Recipe_Class {
 
         return $query;
     }
-
+    /*
     public function loadRecipes() {
         $rezepte  
         $pcliste=new PC_Liste();
@@ -136,6 +136,7 @@ class Recipe_Class {
         
     return $pcliste;
     }
+    */
 
     public function addRecipe($recipe){
         if($recipe instanceof Recipe_Class){            
@@ -144,9 +145,5 @@ class Recipe_Class {
         }
     }
 
-    public function getAllRecipes()
-    {
-        for(int i= 0; i<)
-    }
 }
 ?>
