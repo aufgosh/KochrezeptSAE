@@ -51,7 +51,7 @@ VALUES
 CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `GerichtID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(255) NULL DEFAULT NULL,
-  `Zubereitungsanleitung` VARCHAR(255) NULL DEFAULT NULL,
+  `Anleitung` VARCHAR(255) NULL DEFAULT NULL,
   `Beschreibung` VARCHAR(255) NULL DEFAULT NULL,
   `Bild` VARCHAR(255) NULL DEFAULT NULL,
   `Anzahl Personen` VARCHAR(255) NULL DEFAULT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
 
 DEFAULT CHARACTER SET = utf8;
 INSERT INTO gericht
-  (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Anzahl Personen`,`kategorie_idKategorie`,`nutzer_NutzerID`)
+  (`GerichtID`,`Name`,`Anleitung`,`Beschreibung`,`Bild`,`Anzahl Personen`,`kategorie_idKategorie`,`nutzer_NutzerID`)
   VALUES
     (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","2",1,1 );
 
