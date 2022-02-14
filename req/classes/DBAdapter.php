@@ -21,6 +21,7 @@ class DBAdapter {
         if($row) {
             $user->setID($row['NutzerID']);
             $user->setUsername($row['UserName']);
+            $user->setPassword($row['Passwd'])
         }
         
         return $user;
