@@ -36,20 +36,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $username);
             
             // Set parameters and hash the password so it can be checked with the hash in the DB.
-            $param_username = $username;
             $hashed_password = hash('sha256', $password);
             
             $password_from_ui = hash('sha256', $password);
-
-            /*echo "<br>";
-
-            echo $hashed_password;
-            echo "<br>";
-            echo $password_from_ui;
-            echo "<br>";*/
 
 
             // Attempt to execute the prepared statement
@@ -63,13 +55,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         
-                        /*echo "pswd test5";
-                        echo "<br>";
-
-                        echo $hashed_password;
-                        echo "<br>";
-                        echo $password_from_ui;
-                        echo "<br>";*/
                         
                         //Check if password is correct 
                         if($password_from_ui == $hashed_password){

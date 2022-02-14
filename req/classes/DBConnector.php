@@ -4,6 +4,7 @@ class DBConnector extends mysqli
     private $user = "root";
     private $pass = "";
     private $dbHost = "localhost";
+    private $dbName = "rezept";
 
     private static $instance = null;
 
@@ -19,9 +20,9 @@ class DBConnector extends mysqli
     }
 
     private function __construct(){
-        parent::__construct(this->dbHost,
-                            this->user
-                            this->pass);
+        parent::__construct($this->dbHost,
+                            $this->user,
+                            $this->pass, $this->dbName);
         if (mysqli_connect_error()){
             exit('Verbindungsfehler('.mysqli_connect_errno().')'
                     .mysqli_connect_error());

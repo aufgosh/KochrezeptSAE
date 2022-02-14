@@ -26,11 +26,11 @@
             <div class="row">
                 <div class="col-md-9">
                     <h3>Rezeptname</h3>
-                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" style="width: 100%;"><?php $txtRezeptName; ?></input>
+                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" style="width: 100%;"></input>
                     <br>
                     <br>
                     <h3>Rezept beschreibung</h3>
-                    <textarea required><?php $RezeptBeschreibung; ?></textarea>
+                    <textarea required></textarea>
                     <br>
                     <br>
                 <h3>Benötigte Zutaten</h3>
@@ -59,11 +59,11 @@
                 </ul>
                 <br>
                 <h3>Zubereitung</h3>
-                <textarea required><?php $RezeptZubereitung; ?></textarea>
+                <textarea required></textarea>
                 <br>
                 <br>
                 <h3>Bild hochladen</h3>
-                <input type="file" name="image-file-upload" required <?php $Bild; ?>>
+                <input type="file" name="image-file-upload" required>
                 <br>
                 <br>
                 <button type="submit" class="btn btn-blue btn-login" name="Erstellen">Rezept erstellen</button>
