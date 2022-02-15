@@ -110,7 +110,11 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
-            $recipe->setBild($row["Bild"]);
+            if($row["Bild"] != "Bild" && $row["Bild"] != null) {
+                $recipe[$counter]->setBild($row["Bild"]);
+            } else {
+                $recipe[$counter]->setBild("uploads/default.jpg");
+            }
         }
 
         return $recipe;
@@ -147,7 +151,11 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setZutaten($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
-            $recipe->setBild($row["Bild"]);
+            if($row["Bild"] != "Bild" && $row["Bild"] != null) {
+                $recipe[$counter]->setBild($row["Bild"]);
+            } else {
+                $recipe[$counter]->setBild("uploads/default.jpg");
+            }
         }
 
         return $recipe;
