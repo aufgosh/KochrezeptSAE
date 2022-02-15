@@ -11,5 +11,6 @@ https://pastebin.com/aUQsqC1w
 getbootstrap.com
 php 7.4+
 
-<h1>Testaccount credentials<h1>
-lehrer lehrer
+<h1>Testaccount credentials</h1>
+user: lehrer 
+pass: lehrer
