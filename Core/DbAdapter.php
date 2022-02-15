@@ -73,7 +73,7 @@ class DbAdapter
 
         $counter = 0;
         while ($row = $result->fetch_assoc()) {
-            if (null === $id || $row['nutzer_NutzerID'] === $id) {
+            if (null === $id || $row['nutzer_NutzerID'] == $id) {
                 $allRecipes[$counter] = new Recipe();
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
