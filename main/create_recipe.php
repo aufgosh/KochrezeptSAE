@@ -26,7 +26,7 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
                 var DefaultName = "zutat[]";
                 var DefaultNameIncrementNumber = 0;
 
-                // No further customizations required.
+                
                 function AddFormField(id,type,name,value,tag) {
                     if(! document.getElementById && document.createElement) { return; }
                     var inhere = document.getElementById(id);

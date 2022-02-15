@@ -1,6 +1,9 @@
 <?php
 
 namespace Core {
+    /**
+     * Einstellungen für die Datenbank Verbindung.
+     */
     abstract class Settings
     {
         public const DB_HOST = "localhost";
