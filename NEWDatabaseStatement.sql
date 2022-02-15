@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `Name` VARCHAR(255) NULL DEFAULT NULL,
   `Zubereitungsanleitung` VARCHAR(255) NULL DEFAULT NULL,
   `Beschreibung` VARCHAR(255) NULL DEFAULT NULL,
-  `Bild` VARCHAR(255) NULL DEFAULT NULL,
+  `Bild` LONGBLOB NULL DEFAULT NULL,
   `Zutaten` LONGTEXT NULL DEFAULT NULL,
   `kategorie_idKategorie` INT(11) NOT NULL,
   `nutzer_NutzerID` INT(11) NOT NULL,
