@@ -27,7 +27,8 @@ class DbAdapter
         return self::$instance;
     }
 
-    public static function getConnector(){
+    public static function getConnector()
+    {
         return self::getInstance()->connector;
     }
 
@@ -49,7 +50,6 @@ class DbAdapter
         }
 
         return $user;
-
     }
     /**
      * Neues Rezept in Datenbank laden.
@@ -60,7 +60,6 @@ class DbAdapter
         $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
                   VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$zutaten', '$category', '$createdByUser')";
         $this->connector->query($query) or die($this->connector->error);
-
     }
     /**
      * Rezepte von der Datenbank holen und in Globale Variablen speichern. 
@@ -104,25 +103,24 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
-
         }
 
         return $recipe;
-
     }
     /**
      * Aufzählung der Zutaten.
      */
-    public function listIngredients($ingredients) {
+    public function listIngredients($ingredients)
+    {
         $Zutaten = explode("|", $ingredients);
-        foreach($Zutaten as $zutate){
+        foreach ($Zutaten as $zutate) {
             echo "<li>";
             echo $zutate;
             echo "</li>";
         }
     }
 
-    
+
     /**
      * Rezept von der Datenbank holen und in Globale Variablen speichern. 
      */
@@ -139,32 +137,28 @@ class DbAdapter
             $recipe->setRezeptName($row['Name']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
-            $recipe->setZutat1($row['Zutaten']);
+            $recipe->setZutaten($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
         }
 
         return $recipe;
-
-
     }
     /**
      * Zugehörigen Nutzer zu einem Rezept aus der Datenbank holen. 
      */
     public function getUserForReceipt($RecipeID)
     {
-        
+
         $query = "SELECT gericht.GerichtID, gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
         FROM gericht
         INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID
         WHERE '$RecipeID' = gericht.GerichtID;";
         $result = $this->connector->query($query) or die($this->connector->error);
         $row = $result->fetch_assoc();
-        if($row){
+        if ($row) {
             $User = $row['User'];
             echo $User;
         }
         return $User;
-
     }
-
 }
