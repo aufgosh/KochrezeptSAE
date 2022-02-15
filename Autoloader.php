@@ -2,6 +2,9 @@
 
 class Autoloader
 {
+    /**
+     * Sucht nach Klassen und bindet diese direkt ein ohne, dass jede Klasse einzeln eingebunden werden muss.
+     */
     public static function register()
     {
         spl_autoload_register(function ($class) {
