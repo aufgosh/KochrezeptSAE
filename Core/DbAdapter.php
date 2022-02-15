@@ -52,7 +52,7 @@ class DbAdapter
     {
 
         $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
-                  VALUES ('$name', '$anleitung', '$bild', '$beschreibung', $zutaten, '$category', '$createdByUser')";
+                  VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$zutaten', '$category', '$createdByUser')";
         $this->connector->query($query) or die($this->connector->error);
 
     }

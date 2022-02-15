@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['createRecipe'])){
         $RezeptName = $_POST['txtRezeptName'];
         $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
-        $Zutaten = $_POST['zutat'];
+        $Zutaten = join("|", $_POST['zutat']);
         $RezeptZubereitung = $_POST['txtZubreitung'];
         $Bild = $_POST['image-file-upload'];
 
