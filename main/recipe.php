@@ -40,10 +40,9 @@ require_once "../Autoloader.php";
                 <p>voll leckere lasagne und so ka was man hier noch alles reinschreiben könnte, soll nur beispiel text sein.</p>
                 <h3>Benötigte Zutaten</h3>
                 <ul class="recipe-ul-styling">
-                    <li>5x Melone</li>
-                    <li>7x Kühe</li>
-                    <li>3x Apfel</li>
-                    <li>8x Malboro Gold</li>
+                <?php
+                $dbAdatapter->listIngredients($recipe->getZutaten());
+                ?>
                 </ul>
                 <h3>Zubereitung</h3>
                 <p><?= $recipe->getRezeptZubereitung();?></p>

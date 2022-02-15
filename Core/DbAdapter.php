@@ -89,6 +89,7 @@ class DbAdapter
         if ($row) {
             $recipe->setID($row['GerichtID']);
             $recipe->setRezeptName($row['Name']);
+            $recipe->setZutaten($row['Zutaten']);
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
 
@@ -97,6 +98,17 @@ class DbAdapter
         return $recipe;
 
     }
+
+    public function listIngredients($ingredients) {
+        $Zutaten = explode("|", $ingredients);
+        foreach($Zutaten as $zutate){
+            echo "<li>";
+            echo $zutate;
+            echo "</li>";
+        }
+    }
+
+    
 
     public function getRecipe($RecipeID)
     {
