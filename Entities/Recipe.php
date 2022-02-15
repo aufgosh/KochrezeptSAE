@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
-namespace Entities{
-    class Recipe{
+namespace Entities {
+    class Recipe {
         private $rezepte = array();
         private $id;
         private $RezeptName;
@@ -69,5 +69,5 @@ namespace Entities{
             return $this->Bild;
         }
 
-  
+    }
 }

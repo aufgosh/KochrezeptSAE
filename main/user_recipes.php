@@ -2,7 +2,7 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/req/template/main-header.php";
 include_once($path);
-require_once "../req/classes/DBAdapter.php";
+require_once "../Autoloader.php";
 $dbAdatapter = \Core\DbAdapter::getInstance();
 ?>
 
@@ -25,9 +25,9 @@ $dbAdatapter = \Core\DbAdapter::getInstance();
                 include_once($path);
                 ?>
 
-                <h1>Neuste Rezepte</h1>
+                <h1>Deine Rezepte</h1>
                 <?php
-                $dbAdatapter->listRecipes(true);
+                $dbAdatapter->listRecipes($_SESSION['id']);
                 ?>
 
             </div>
