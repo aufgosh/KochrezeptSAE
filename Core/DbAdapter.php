@@ -92,6 +92,7 @@ class DbAdapter
             $recipe->setZutaten($row['Zutaten']);
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
+            $recipe->setRezeptBeschreibung($row['Beschreibung']);
 
         }
 
@@ -122,6 +123,7 @@ class DbAdapter
             $recipe->setID($row['GerichtID']);
             $recipe->setRezeptName($row['Name']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
+            $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setZutat1($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
         }

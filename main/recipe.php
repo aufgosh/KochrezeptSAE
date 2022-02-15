@@ -37,7 +37,7 @@ require_once "../Autoloader.php";
                 </div>
                 <div class="col-md-6">
                     <h3>Rezept beschreibung</h3>
-                <p>voll leckere lasagne und so ka was man hier noch alles reinschreiben könnte, soll nur beispiel text sein.</p>
+                    <p><?= $recipe->getRezeptBeschreibung();?></p>
                 <h3>Benötigte Zutaten</h3>
                 <ul class="recipe-ul-styling">
                 <?php

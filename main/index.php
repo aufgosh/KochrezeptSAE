@@ -46,7 +46,7 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
                                 </div>
                                 <br>
                             <button class='btn btn-blue recipe-btn' onclick=\"window.location.href='../../main/recipe?id=%s'\">Rezept anschauen</button>
-                        </div>",$recipe->getRezeptName(),$recipe->getRezeptZubereitung(), $recipe->getID());
+                        </div>",$recipe->getRezeptName(),$recipe->getRezeptBeschreibung(), $recipe->getID());
                 }
                 ?>
 
