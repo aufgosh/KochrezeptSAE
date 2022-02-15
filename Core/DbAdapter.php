@@ -79,6 +79,7 @@ class DbAdapter
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
                 $allRecipes[$counter]->setRezeptZubereitung($row['Zubereitungsanleitung']);
+                $allRecipes[$counter]->setRezeptBeschreibung($row['Beschreibung']);
             }
             $counter++;
         }
