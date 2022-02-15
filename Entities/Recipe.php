@@ -48,7 +48,7 @@ namespace Entities {
         }
 
         public function getZutaten() {
-            return $this->Zutat1;
+            return $this->Zutaten;
         }
 
         //Set und get für RezeptZubereitung
@@ -68,6 +68,7 @@ namespace Entities {
         public function getBild() {
             return $this->Bild;
         }
+
 
     }
 }
