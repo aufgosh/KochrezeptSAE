@@ -159,6 +159,18 @@ a.article:hover {
     width: 300px;
 }
 
+.btn-info {
+    border-color:#7386D5 !important;
+}
+
+.btn-info:focus {
+    box-shadow: 0 0 0 0.2rem rgba(123, 148, 220, 0.75) !important;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.2rem rgba(123, 148, 220, 0.75) !important;
+}
+
 
 .recipe-h3 {
     margin-bottom: 30px;
