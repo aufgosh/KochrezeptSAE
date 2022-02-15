@@ -35,7 +35,7 @@ class DbAdapter
 
         $user = new User();
 
-        $query = 'SELECT NutzerID, UserName, Passwd  FROM nutzer WHERE NutzerID=' . $NutzerID;
+        $query = 'SELECT NutzerID, User, Password  FROM nutzer WHERE NutzerID=' . $NutzerID;
         $result = $this->connector->query($query) or die($this->connector->error);
         $row = $result->fetch_assoc();
         if ($row) {
@@ -103,15 +103,14 @@ class DbAdapter
 
         $recipe = new Recipe();
 
-        $query = 'SELECT Name, Zubereitungsanleitung, Bild, Beschreibung, Zutat1, Zutat2, Zutat3,
-        Zutat4, Zutat5, Zutat6, Zutat7, Zutat8, nutzer_NutzerID FROM gericht WHERE GerichtID =' . $RecipeID;
+        $query = 'SELECT Name, Zubereitungsanleitung, Bild, Beschreibung, Zutaten, nutzer_NutzerID FROM gericht WHERE GerichtID =' . $RecipeID;
         $result = $this->connector->query($query) or die($this->connector->error);
         $row = $result->fetch_assoc();
         if ($row) {
             $recipe->setID($row['GerichtID']);
             $recipe->setRezeptName($row['Name']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
-            $recipe->setZutat1($row['Zutat1']);
+            $recipe->setZutat1($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
         }
 
