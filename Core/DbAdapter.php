@@ -130,5 +130,18 @@ class DbAdapter
 
 
     }
+    public function getUserForReceipt()
+    {
+        
+        $query = 'SELECT gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
+        FROM gericht
+        INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID';
+        $result = $this->connector->query($query) or die($this->connector->error);
+        $row = $result->fetch_assoc();
+        if($row){
+            $User = $row['nutzer.User'];
+        }
+        return $User;
+    }
 
 }
