@@ -54,7 +54,6 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `Zubereitungsanleitung` VARCHAR(255) NULL DEFAULT NULL,
   `Beschreibung` VARCHAR(255) NULL DEFAULT NULL,
   `Bild` VARCHAR(255) NULL DEFAULT NULL,
-  `Anzahl Personen` VARCHAR(255) NULL DEFAULT NULL,
   `Zutaten` LONGTEXT NULL DEFAULT NULL,
   `kategorie_idKategorie` INT(11) NOT NULL,
   `nutzer_NutzerID` INT(11) NOT NULL,
@@ -71,9 +70,9 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
  
 DEFAULT CHARACTER SET = utf8;
 INSERT INTO gericht
-  (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Anzahl Personen`,`Zutaten`,`kategorie_idKategorie`,`nutzer_NutzerID`)
+  (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Zutaten`,`kategorie_idKategorie`,`nutzer_NutzerID`)
   VALUES
-    (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","2","Zutaten oder so",1,1 );
+    (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","Zutaten oder so",1,1 );
  
 -- -----------------------------------------------------
 -- Table `rezept`.`zutaten`
