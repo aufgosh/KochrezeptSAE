@@ -80,7 +80,6 @@ class DbAdapter
                 $allRecipes[$counter]->setRezeptName($row['Name']);
                 $allRecipes[$counter]->setRezeptZubereitung($row['Zubereitungsanleitung']);
                 $allRecipes[$counter]->setRezeptBeschreibung($row['Beschreibung']);
-                echo $row["Bild"];
                 if($row["Bild"] != "Bild" && $row["Bild"] != null) {
                     $allRecipes[$counter]->setBild($row["Bild"]);
                 } else {
