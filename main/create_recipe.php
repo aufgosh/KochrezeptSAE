@@ -82,7 +82,7 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
                 <input type="file" name="image-file-upload" required>
                 <br>
                 <br>
-                <button type="submit" class="btn btn-blue btn-login" name="createRecipe">Rezept erstellen</button>
+                <button type="submit" class="btn btn-blue btn-login" name="submit">Rezept erstellen</button>
                 </div>
             </form>
             </div>
