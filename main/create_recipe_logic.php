@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $RezeptZubereitung = $_POST['txtZubreitung'];
         $Bild = $_POST['image-file-upload'];
 
-        $dbAdatapter->insertRecipe($RezeptName, $RezeptBeschreibung, $Bild, $RezeptBeschreibung, 1, $_SESSION["id"]);
+        $dbAdatapter->insertRecipe($RezeptName, $RezeptBeschreibung, $Bild, $RezeptBeschreibung, $Zutaten, 1, $_SESSION["id"]);
     }
 
     // Bildupload

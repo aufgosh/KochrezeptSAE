@@ -1,19 +1,16 @@
 <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/main-header.php";
-   include_once($path);
+require_once "Constants.php";
+require_once "../Autoloader.php";
+require_once(PATH_MAIN_HEADER_TEMPLATE);
 ?>
 
 
     <div class="wrapper">
         <!-- Sidebar  -->
         <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/sidebar.php";
-   include_once($path);
-
+        require_once(PATH_MAIN_SIDEBAR_TEMPLATE);
         require_once "../main/create_recipe_logic.php";
-?>
+    ?>
 <div class="container">
         <!-- Page Content  -->
         <div id="content">
@@ -95,7 +92,4 @@
 </div>
 
     <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/main-footer.php";
-   include_once($path);
-?>
+    require_once(PATH_MAIN_FOOTER_TEMPLATE);
