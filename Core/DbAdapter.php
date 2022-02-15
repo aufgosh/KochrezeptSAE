@@ -53,6 +53,7 @@ class DbAdapter
 
         $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
                   VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$zutaten', '$category', '$createdByUser')";
+                  var_dump( $query);
         $this->connector->query($query) or die($this->connector->error);
 
     }
@@ -71,6 +72,8 @@ class DbAdapter
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
                 $allRecipes[$counter]->setRezeptZubereitung($row['Zubereitungsanleitung']);
+                $allRecipes[$counter]->setBild($row["Bild"]);
+
             }
             $counter++;
         }
