@@ -7,10 +7,9 @@ https://pastebin.com/yeXigegg
 <h1>SQL Script for creating Database</h1>
 https://pastebin.com/aUQsqC1w
 
-<h1>libarys used</h1>
+<h1>requirements</h1>
 getbootstrap.com
+php 7.4+
 
-<h1>Login für Lehrer<h1>
-<p>Credentials:</p>
-<p>User: lehrer</p>
-<p>Passwd: lehrer</p>
+<h1>Testaccount credentials<h1>
+lehrer lehrer
