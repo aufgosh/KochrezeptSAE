@@ -18,6 +18,7 @@ class DbAdapter
         $this->connector->select_db(Settings::DB_NAME);
     }
 
+
     public static function getInstance()
     {
         if (!self::$instance instanceof self) {
@@ -30,6 +31,9 @@ class DbAdapter
         return self::getInstance()->connector;
     }
 
+    /**
+     * Abfrage des Users und speichern in einer Globalen Variable.
+     */
     public function getUser($NutzerID)
     {
 
@@ -47,7 +51,9 @@ class DbAdapter
         return $user;
 
     }
-
+    /**
+     * Neues Rezept in Datenbank laden.
+     */
     public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser)
     {
 
@@ -56,7 +62,9 @@ class DbAdapter
         $this->connector->query($query) or die($this->connector->error);
 
     }
-
+    /**
+     * Rezepte von der Datenbank holen und in Globale Variablen speichern. 
+     */
     public function listRecipes($id = null)
     {
         $query = "SELECT * FROM gericht ORDER BY GerichtID DESC ";
@@ -77,7 +85,9 @@ class DbAdapter
 
         return $allRecipes;
     }
-
+    /**
+     * ein betimmtes Rezept von der Datenbank holen und in globale Variable speichern. 
+     */
     public function getRecipeById($RecipeID)
     {
 
@@ -99,7 +109,9 @@ class DbAdapter
         return $recipe;
 
     }
-
+    /**
+     * Aufzählung der Zutaten.
+     */
     public function listIngredients($ingredients) {
         $Zutaten = explode("|", $ingredients);
         foreach($Zutaten as $zutate){
@@ -110,7 +122,9 @@ class DbAdapter
     }
 
     
-
+    /**
+     * Rezept von der Datenbank holen und in Globale Variablen speichern. 
+     */
     public function getRecipe($RecipeID)
     {
 
@@ -132,6 +146,9 @@ class DbAdapter
 
 
     }
+    /**
+     * Zugehörigen Nutzer zu einem Rezept aus der Datenbank holen. 
+     */
     public function getUserForReceipt($RecipeID)
     {
         
