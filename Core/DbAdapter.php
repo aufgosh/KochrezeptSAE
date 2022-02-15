@@ -40,19 +40,19 @@ class DbAdapter
         $row = $result->fetch_assoc();
         if ($row) {
             $user->setID($row['NutzerID']);
-            $user->setUsername($row['UserName']);
-            $user->setPassword($row['Passwd']);
+            $user->setUsername($row['User']);
+            $user->setPassword($row['Password']);
         }
 
         return $user;
 
     }
 
-    public function insertRecipe($name, $anleitung, $bild, $beschreibung, $category, $createdByUser)
+    public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser)
     {
 
-        $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, `Anzahl Personen`, kategorie_idKategorie, nutzer_NutzerID) 
-                  VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$category', '$createdByUser')";
+        $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
+                  VALUES ('$name', '$anleitung', '$bild', '$beschreibung', $zutaten, '$category', '$createdByUser')";
         $this->connector->query($query) or die($this->connector->error);
 
     }
