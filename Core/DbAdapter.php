@@ -169,7 +169,7 @@ class DbAdapter
         $query = "SELECT gericht.GerichtID, gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
         FROM gericht
         INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID
-        WHERE '$RecipeID' = gericht.GerichtID;";
+        WHERE '$RecipeID' = gericht.nutzer_NutzerID;";
         $result = $this->connector->query($query) or die($this->connector->error);
         $row = $result->fetch_assoc();
         if ($row) {
