@@ -85,11 +85,12 @@ class DbAdapter
                 } else {
                     $allRecipes[$counter]->setBild("uploads/default.jpg");
                 }
+                echo file_exists($row["Bild"]);
+                
 
             }
             $counter++;
         }
-
         return $allRecipes;
     }
     /**

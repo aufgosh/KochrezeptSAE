@@ -16,9 +16,7 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
         <div id="content">
 
             <?php
-            $path = $_SERVER['DOCUMENT_ROOT'];
-            $path .= "/req/template/index-navbar.php";
-            include_once($path);
+            require_once(PATH_MAIN_INDEX_NAVBAR_TEMPLATE);
             ?>
 
             <script type="text/javascript" src="../req/js/AddFormField.js"></script>
