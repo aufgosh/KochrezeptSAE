@@ -135,7 +135,8 @@ class DbAdapter
         
         $query = 'SELECT gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
         FROM gericht
-        INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID';
+        INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID
+        WHERE gericht.nutzer_NutzerID=nutzer.NutzerID';
         $result = $this->connector->query($query) or die($this->connector->error);
         $row = $result->fetch_assoc();
         if($row){
