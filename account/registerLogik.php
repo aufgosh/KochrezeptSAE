@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         echo "last schritt";
         // Prepare an insert statement
-        $sql = "INSERT INTO nutzer (UserName, Passwd) VALUES (?, ?)";
+        $sql = "INSERT INTO nutzer (User, Password) VALUES (?, ?)";
          echo "insert true";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
