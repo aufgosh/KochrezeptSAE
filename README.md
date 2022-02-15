@@ -12,5 +12,5 @@ getbootstrap.com
 
 <h1>Login für Lehrer<h1>
 <p>Credentials:</p>
-User: lehrer
-Passwd: lehrer
+<p>User: lehrer</p>
+<p>Passwd: lehrer</p>
