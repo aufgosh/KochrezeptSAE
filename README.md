@@ -11,6 +11,6 @@ https://pastebin.com/aUQsqC1w
 getbootstrap.com
 
 <h1>Login für Lehrer<h1>
-Credentials:
-User: lehrer
-Passwd: lehrer
+<p>Credentials:</p>
+<p>User: lehrer</p>
+<p>Passwd: lehrer</p>
