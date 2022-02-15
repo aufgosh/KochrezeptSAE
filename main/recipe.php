@@ -1,31 +1,24 @@
 <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/main-header.php";
-   include_once($path);
-require_once "../Autoloader.php";
+    require_once "Constants.php";
+    require_once "../Autoloader.php";
+    require_once(PATH_MAIN_HEADER_TEMPLATE);
 ?>
 
 
     <div class="wrapper">
         <!-- Sidebar  -->
         <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/sidebar.php";
-   include_once($path);
+require_once(PATH_MAIN_SIDEBAR_TEMPLATE);
 ?>
 <div class="container">
         <!-- Page Content  -->
         <div id="content">
 
-        <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/index-navbar.php";
-   include_once($path);
+<?php 
+require_once(PATH_MAIN_INDEX_NAVBAR_TEMPLATE);
 
-
-
-        $dbAdatapter = \Core\DbAdapter::getInstance();
-        $recipe = $dbAdatapter->getRecipeById($_GET["id"]);
+$dbAdatapter = \Core\DbAdapter::getInstance();
+$recipe = $dbAdatapter->getRecipeById($_GET["id"]);
 ?>
 
             <h1><?= $recipe->getRezeptName(); ?></h1>
@@ -53,8 +46,5 @@ require_once "../Autoloader.php";
     </div>
 </div>
 
-    <?php 
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/main-footer.php";
-   include_once($path);
-?>
+<?php 
+require_once(PATH_MAIN_FOOTER_TEMPLATE);  
