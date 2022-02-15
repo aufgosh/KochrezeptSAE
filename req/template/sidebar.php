@@ -11,12 +11,6 @@
                         <li>
                             <a href="/main/index">Neuste Rezepte</a>
                         </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
                     </ul>
                 </li>
                 <li>
@@ -26,16 +20,10 @@
                             <a href="/main/profile?id=<?php echo $_SESSION["id"] ?>">Profil</a>
                         </li>
                         <li>
-                            <a href="#">Einstellungen</a>
-                        </li>
-                        <li>
                             <a href="/main/user_recipes">Deine Rezepte</a>
                         </li>
                         <li>
                             <a href="/main/create_recipe">Rezept erstellen</a>
-                        </li>
-                        <li>
-                            <a href="#">Favoriten</a>
                         </li>
                     </ul>
                 </li>

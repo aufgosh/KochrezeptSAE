@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate credentials
     if (empty($username_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = "SELECT NutzerID, UserName, Passwd FROM nutzer WHERE UserName = ?";
+        $sql = "SELECT NutzerID, user, Password FROM nutzer WHERE User = ?";
 
         if ($stmt = \Core\DbAdapter::getConnector()->prepare($sql)) {
             // Bind variables to the prepared statement ass parameters

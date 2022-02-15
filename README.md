@@ -5,12 +5,12 @@ KochrezeptApp for SAE
 https://pastebin.com/yeXigegg
 
 <h1>SQL Script for creating Database</h1>
-https://pastebin.com/X9AgsaAE
+https://pastebin.com/aUQsqC1w
 
 <h1>libarys used</h1>
 getbootstrap.com
 
 <h1>Login für Lehrer<h1>
-Credentials:
-User: lehrer
-Passwd: lehrer
+<p>Credentials:</p>
+<p>User: lehrer</p>
+<p>Passwd: lehrer</p>

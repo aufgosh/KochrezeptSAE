@@ -1,33 +1,50 @@
-<?php declare(strict_types=1);
+<?php
 
-namespace Entities{
-    class User {
+declare(strict_types=1);
+
+namespace Entities {
+    class User
+    {
         private $id;
         private $username;
         private $password;
 
-        public function setID($id){
+        public function setID($id)
+        {
             $this->id = $id;
         }
 
-        public function getID() {
+        public function getID()
+        {
             return $this->id;
         }
 
-        public function setUsername($username) {
+        public function setUsername($username)
+        {
             $this->username = $username;
         }
 
-        public function getUsername() {
+        public function getUsername()
+        {
             return $this->username;
         }
 
-        public function setPassword($password) {
+        public function setPassword($password)
+        {
             $this->password = $password;
         }
 
-        public function getPassword() {
+        public function getPassword()
+        {
             return $this->password;
+        }
+
+        public function UserIDFrontendCheck($id) {
+            if($id == $_SESSION['id']) {
+                echo "Dein Profil";
+            } else {
+                echo "User Profil";
+            }
         }
     }
 }
