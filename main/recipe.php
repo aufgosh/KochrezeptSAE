@@ -25,7 +25,7 @@ $dbAdatapter = \Core\DbAdapter::getInstance();
             <div class="recipe-container">
                 <div class="row">
                     <div class="col-md-4">
-                        <img class="recipe-image" src="https://img.chefkoch-cdn.de/rezepte/745721177147257/bilder/668335/crop-960x540/lasagne.jpg">
+                        <img class="recipe-image" src="<?php echo $recipe->getBild() ?>">
                         <p>von <a href="profile?id=<?php echo $recipe->getNutzerID() ?>"><?php $dbAdatapter->getUserForReceipt($recipe->getNutzerID()); ?></a></p>
                     </div>
                     <div class="col-md-6">

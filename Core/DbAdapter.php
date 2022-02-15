@@ -79,6 +79,7 @@ class DbAdapter
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
                 $allRecipes[$counter]->setRezeptZubereitung($row['Zubereitungsanleitung']);
+                $allRecipes[$counter]->setRezeptBeschreibung($row['Beschreibung']);
                 $allRecipes[$counter]->setBild($row["Bild"]);
 
             }
@@ -105,6 +106,7 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
+            $recipe->setBild($row["Bild"]);
         }
 
         return $recipe;
@@ -141,6 +143,7 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setZutaten($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
+            $recipe->setBild($row["Bild"]);
         }
 
         return $recipe;
