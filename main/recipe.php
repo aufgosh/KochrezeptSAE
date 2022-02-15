@@ -26,7 +26,7 @@ $dbAdatapter = \Core\DbAdapter::getInstance();
                 <div class="row">
                     <div class="col-md-4">
                         <img class="recipe-image" src="<?php echo $recipe->getBild() ?>">
-                        <p>von <a href="profile?id=<?php echo $recipe->getNutzerID() ?>"><?php $dbAdatapter->getUserForReceipt($recipe->getNutzerID()); ?></a></p>
+                        <p>von <a class="recipe-anchor-class" href="profile?id=<?php echo $recipe->getNutzerID() ?>"><?php $dbAdatapter->getUserForReceipt($recipe->getNutzerID()); ?></a></p>
                     </div>
                     <div class="col-md-6">
                         <h3>Rezept beschreibung</h3>
