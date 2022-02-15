@@ -54,5 +54,4 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
     </div>
 
 <?php
-require_once(PATH_MAIN_FOOTER_TEMPLATE);    
-?>
+require_once(PATH_MAIN_FOOTER_TEMPLATE);

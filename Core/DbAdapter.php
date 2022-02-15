@@ -18,6 +18,7 @@ class DbAdapter
         $this->connector->select_db(Settings::DB_NAME);
     }
 
+
     public static function getInstance()
     {
         if (!self::$instance instanceof self) {
@@ -26,10 +27,14 @@ class DbAdapter
         return self::$instance;
     }
 
-    public static function getConnector(){
+    public static function getConnector()
+    {
         return self::getInstance()->connector;
     }
 
+    /**
+     * Abfrage des Users und speichern in einer Globalen Variable.
+     */
     public function getUser($NutzerID)
     {
 
@@ -45,9 +50,10 @@ class DbAdapter
         }
 
         return $user;
-
     }
-
+    /**
+     * Neues Rezept in Datenbank laden.
+     */
     public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser)
     {
 
@@ -55,9 +61,10 @@ class DbAdapter
                   VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$zutaten', '$category', '$createdByUser')";
                   var_dump( $query);
         $this->connector->query($query) or die($this->connector->error);
-
     }
-
+    /**
+     * Rezepte von der Datenbank holen und in Globale Variablen speichern. 
+     */
     public function listRecipes($id = null)
     {
         $query = "SELECT * FROM gericht ORDER BY GerichtID DESC ";
@@ -67,7 +74,7 @@ class DbAdapter
 
         $counter = 0;
         while ($row = $result->fetch_assoc()) {
-            if (null === $id || $row['nutzer_NutzerID'] === $id) {
+            if (null === $id || $row['nutzer_NutzerID'] == $id) {
                 $allRecipes[$counter] = new Recipe();
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
@@ -80,7 +87,9 @@ class DbAdapter
 
         return $allRecipes;
     }
-
+    /**
+     * ein betimmtes Rezept von der Datenbank holen und in globale Variable speichern. 
+     */
     public function getRecipeById($RecipeID)
     {
 
@@ -96,24 +105,27 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
-
         }
 
         return $recipe;
-
     }
-
-    public function listIngredients($ingredients) {
+    /**
+     * Aufzählung der Zutaten.
+     */
+    public function listIngredients($ingredients)
+    {
         $Zutaten = explode("|", $ingredients);
-        foreach($Zutaten as $zutate){
+        foreach ($Zutaten as $zutate) {
             echo "<li>";
             echo $zutate;
             echo "</li>";
         }
     }
 
-    
 
+    /**
+     * Rezept von der Datenbank holen und in Globale Variablen speichern. 
+     */
     public function getRecipe($RecipeID)
     {
 
@@ -127,29 +139,28 @@ class DbAdapter
             $recipe->setRezeptName($row['Name']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
-            $recipe->setZutat1($row['Zutaten']);
+            $recipe->setZutaten($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
         }
 
         return $recipe;
-
-
     }
+    /**
+     * Zugehörigen Nutzer zu einem Rezept aus der Datenbank holen. 
+     */
     public function getUserForReceipt($RecipeID)
     {
-        
+
         $query = "SELECT gericht.GerichtID, gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
         FROM gericht
         INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID
         WHERE '$RecipeID' = gericht.GerichtID;";
         $result = $this->connector->query($query) or die($this->connector->error);
         $row = $result->fetch_assoc();
-        if($row){
+        if ($row) {
             $User = $row['User'];
             echo $User;
         }
         return $User;
-
     }
-
 }
