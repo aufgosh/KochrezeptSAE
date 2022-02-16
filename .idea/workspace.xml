@@ -22,7 +22,8 @@
     <list default="true" id="08191a65-98f5-4b33-9afc-f28c54f21426" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/loginLogik.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/loginLogik.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/registerLogik.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/registerLogik.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/req/template/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/req/template/header.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +58,7 @@
       <updated>1645023846469</updated>
       <workItem from="1645023851553" duration="90000" />
       <workItem from="1645023947735" duration="10269000" />
-      <workItem from="1645049402551" duration="1304000" />
+      <workItem from="1645049402551" duration="1619000" />
     </task>
     <servers />
   </component>
