@@ -190,6 +190,7 @@ class DbAdapter
 
         if ($row = $result->fetch_assoc()) {
             $User = $row['User'];
+            echo $User;
         }
         return $User;
     }
