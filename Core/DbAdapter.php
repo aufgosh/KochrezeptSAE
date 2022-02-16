@@ -18,6 +18,10 @@ class DbAdapter
         $this->connector->select_db(Settings::DB_NAME);
     }
 
+    public static function getConnector()
+    {
+        return self::getInstance()->connector;
+    }
 
     public static function getInstance()
     {
@@ -25,11 +29,6 @@ class DbAdapter
             self::$instance = new self;
         }
         return self::$instance;
-    }
-
-    public static function getConnector()
-    {
-        return self::getInstance()->connector;
     }
 
     /**
@@ -54,6 +53,7 @@ class DbAdapter
 
         return $user;
     }
+
     /**
      * Neues Rezept in Datenbank laden.
      */
@@ -66,8 +66,9 @@ class DbAdapter
         $stmt->bind_param("sssssss", $name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser);
         $stmt->execute();
     }
+
     /**
-     * Rezepte von der Datenbank holen und in Globale Variablen speichern. 
+     * Rezepte von der Datenbank holen und in Globale Variablen speichern.
      */
     public function listRecipes($id = null)
     {
@@ -84,20 +85,21 @@ class DbAdapter
                 $allRecipes[$counter]->setRezeptName($row['Name']);
                 $allRecipes[$counter]->setRezeptZubereitung($row['Zubereitungsanleitung']);
                 $allRecipes[$counter]->setRezeptBeschreibung($row['Beschreibung']);
-                if($row["Bild"] != "Bild" && $row["Bild"] != null) {
+                if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                     $allRecipes[$counter]->setBild($row["Bild"]);
                 } else {
                     $allRecipes[$counter]->setBild("uploads/default.jpg");
                 }
-                
+
 
             }
             $counter++;
         }
         return $allRecipes;
     }
+
     /**
-     * ein betimmtes Rezept von der Datenbank holen und in globale Variable speichern. 
+     * ein betimmtes Rezept von der Datenbank holen und in globale Variable speichern.
      */
     public function getRecipeById($RecipeID)
     {
@@ -116,7 +118,7 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
-            if($row["Bild"] != "Bild" && $row["Bild"] != null) {
+            if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                 $recipe->setBild($row["Bild"]);
             } else {
                 $recipe->setBild("uploads/default.jpg");
@@ -125,6 +127,7 @@ class DbAdapter
 
         return $recipe;
     }
+
     /**
      * Aufzählung der Zutaten.
      */
@@ -140,7 +143,7 @@ class DbAdapter
 
 
     /**
-     * Rezept von der Datenbank holen und in Globale Variablen speichern. 
+     * Rezept von der Datenbank holen und in Globale Variablen speichern.
      */
     public function getRecipe($RecipeID)
     {
@@ -160,7 +163,7 @@ class DbAdapter
             $recipe->setRezeptZubereitung($row['Zubereitungsanleitung']);
             $recipe->setZutaten($row['Zutaten']);
             $recipe->setNutzerID($row['nutzer_NutzerID']);
-            if($row["Bild"] != "Bild" && $row["Bild"] != null) {
+            if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                 $recipe->setBild($row["Bild"]);
             } else {
                 $recipe->setBild("uploads/default.jpg");
@@ -169,8 +172,9 @@ class DbAdapter
 
         return $recipe;
     }
+
     /**
-     * Zugehörigen Nutzer zu einem Rezept aus der Datenbank holen. 
+     * Zugehörigen Nutzer zu einem Rezept aus der Datenbank holen.
      */
     public function getUserForReceipt($RecipeID)
     {
@@ -186,140 +190,89 @@ class DbAdapter
 
         if ($row = $result->fetch_assoc()) {
             $User = $row['User'];
-            echo $User;
         }
         return $User;
     }
 
     public function loginUser($username, $password) {
-        
-        // Check if the user is already logged in, if yes then redirect him to welcome page
-        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-            header("location: /main/index");
-            exit;
-        }
 
-        // Processing form data when form is submitted
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            // Check if username is empty
-            if (empty(trim($_POST["username"]))) {
-                $username_err = "Please enter username.";
-            } else {
-                $username = trim($_POST["username"]);
-            }
-
-            // Check if password is empty and give an error if epmty
-            if (empty(trim($_POST["password"]))) {
-                $password_err = "Please enter your password.";
-            } else {
-                $password = trim($_POST["password"]);
-            }
-
-            // Validate credentials
-            if (empty($username_err) && empty($password_err)) {
-                // Prepare a select statement
-                $sql = "SELECT NutzerID, user, Password FROM nutzer WHERE User = ?";
-
-                if ($stmt = \Core\DbAdapter::getConnector()->prepare($sql)) {
-                    // Bind variables to the prepared statement as parameters
-                    mysqli_stmt_bind_param($stmt, "s", $username);
-
-                    // Set parameters and hash the password so it can be checked with the hash in the DB.
-                    $hashed_password = hash('sha256', $password);
-
-                    $password_from_ui = hash('sha256', $password);
-
-
-                    // Attempt to execute the prepared statement
-                    if (mysqli_stmt_execute($stmt)) {
-                        // Store result
-                        mysqli_stmt_store_result($stmt);
-
-                        // Check if username exists, if yes then verify password
-                        if (mysqli_stmt_num_rows($stmt) == 1) {
-                            // Bind result variables
-                            mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
-                            if (mysqli_stmt_fetch($stmt)) {
-
-
-                                //Check if password is correct 
-                                if ($password_from_ui == $hashed_password) {
-                                    // Password is correct, so start a new session
-                                    session_start();
-
-                                    // Store data in session variables
-                                    $_SESSION["loggedin"] = true;
-                                    $_SESSION["id"] = $id;
-                                    $_SESSION["username"] = $username;
-
-                                    // Redirect user to welcome page
-                                    header("location: /main/index");
-                                } else {
-                                    // Password is not valid, display a generic error message
-                                    $login_err = "Invalid username or password.";
-                                    echo $login_err;
-                                }
-                            }
-                        } else {
-                            // Username doesn't exist, display a generic error message
-                            $login_err = "Invalid username or password.";
-                            echo $login_err;
-                        }
-                    } else {
-                        echo "Oops! Something went wrong. Please try again later.";
-                    }
-
-                    // Close statement
-                    mysqli_stmt_close($stmt);
-                }
-            }
-
-            // Close connection
-            mysqli_close($link);
-        }
-    }
-
-    public function registerUser($username, $password, $repeatpassword)
-    {
+        $password = hash('sha256', $password);
         $user = new User();
         $errorhandler = new ErrorHandler();
         $message = null;
         $alert = null;
-        $success = null;
-        $errorbool = true;
 
-        if($password == $repeatpassword) {
-            $password = hash('sha256', $password);
-            $user->setPassword($password);
-
-            $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if (mysqli_num_rows($result) == 1)
-            {
-                $alert = "Username bereits vergeben.";
-            } else {
-                $user->setUsername($username);
-                $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
-                $stmt->bind_param("ss", $username, $password);
-                $stmt->execute();
-                $success = "Benutzer erfolgreich angelegt.";
-            }
+        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($row = $result->fetch_assoc()) {
+            $user->setUsername($row['User']);
+            $user->setPassword($row['Password']);
+            $user->setID($row['NutzerID']);
         } else {
-            $alert = "passwörter stimmen nicht über ein.";
+            $alert = "Username oder Passwort falsch.";
+        }
+        if ($user->getPassword() == $password) {
 
+            session_start();
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = $user->getID();
+            $_SESSION["username"] = $user->getUsername();
+            header("location: /main/index");
+        } else {
+            $alert = "Username oder Passwort falsch.";
         }
 
-        if($alert != null) {
+        if ($alert != null) {
             $message = $_POST["message"] = $alert;
-            $errorbool = true;
-        } else {
-            $message = $_POST["message"] = $success;
-            $errorbool = false;
+            $errorhandler->displayMessage($message, true);
         }
-        $errorhandler->displayMessage($message, $errorbool);
+
     }
+
+
+
+public
+function registerUser($username, $password, $repeatpassword)
+{
+    $user = new User();
+    $errorhandler = new ErrorHandler();
+    $message = null;
+    $alert = null;
+    $success = null;
+    $errorbool = true;
+
+    if ($password == $repeatpassword) {
+        $password = hash('sha256', $password);
+        $user->setPassword($password);
+
+        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if (mysqli_num_rows($result) == 1) {
+            $alert = "Username bereits vergeben.";
+        } else {
+            $user->setUsername($username);
+            $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $username, $password);
+            $stmt->execute();
+            $success = "Benutzer erfolgreich angelegt.";
+        }
+    } else {
+        $alert = "passwörter stimmen nicht über ein.";
+
+    }
+
+    if ($alert != null) {
+        $message = $_POST["message"] = $alert;
+        $errorbool = true;
+    } else {
+        $message = $_POST["message"] = $success;
+        $errorbool = false;
+    }
+    $errorhandler->displayMessage($message, $errorbool);
+}
 
 }
