@@ -190,9 +190,9 @@ class DbAdapter
     }
     public function checkIfUserExists($username)
     {
-
-        $query = "SELECT * FROM nutzer WHERE User = '$username'";
-        $result = $this->connector->query($query) or die($this->connector->error);
+        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = '$username'");
+        
+        //$result = $this->connector->query($query) or die($this->connector->error);
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $row = $result->fetch_assoc();
