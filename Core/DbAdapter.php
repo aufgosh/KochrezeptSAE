@@ -197,7 +197,7 @@ class DbAdapter
         if ($row) 
         {
             $User = $row['User'];
-            $NutzerID = $row['NutzerID']
+            $NutzerID = $row['NutzerID'];
 
         }
         if ($User == $username) {

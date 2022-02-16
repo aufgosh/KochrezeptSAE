@@ -5,11 +5,33 @@ $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 require_once "../Autoloader.php";
 
- 
+use Entities\User;
 
 class Register
 {
-    $user = new User();
+
+    public static function setRegisterUsername($username) {
+        $user = new User();
+        $user->setUsername($username);
+        Register::checkIfUserExists($user->getUsername());
+    }
+
+    public function setRegisterPassword($password) {
+        $user->setPassword($password);
+    }
+
+    public static function checkIfUserExists($username) {
+        $stmt = \Core\DbAdapter::getConnector()->prepare("SELECT NutzerID FROM nutzer WHERE User = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if(mysqli_stmt_num_rows($result) == 1) {
+            echo "nicht ok";
+        } else {
+            echo "ok";
+        }
+
+    }
     
     function getInformationFromUI()
     {
@@ -27,13 +49,15 @@ class Register
 }
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-
+    
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
     } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))){
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else{
+
+        Register::setRegisterUsername($_POST["username"]);
         // Prepare a select statement
         $sql = "SELECT NutzerID FROM nutzer WHERE User = ?";
 
