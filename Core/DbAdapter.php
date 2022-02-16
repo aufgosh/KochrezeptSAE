@@ -189,13 +189,11 @@ class DbAdapter
         return $User;
     }
     
-    public function InsertUserRegestration($username, $param_password)
-    {
-        $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?) ");
-        $stmt->bind_param("ss", $username, $param_password);
-        $stmt->execute();
-    }
+ 
 
+    /**
+     * Prüfen, ob der eingegebene Name schon vergeben ist.
+     */
     public function CheckIfUserIsTaken($username)
     {
         
@@ -223,6 +221,16 @@ class DbAdapter
 
         return $exists;
 
+    }
+    
+    /**
+     * Registration des Nutzers;
+     */
+    public function InsertUserRegestration($username, $param_password)
+    {
+        $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?) ");
+        $stmt->bind_param("ss", $username, $param_password);
+        $stmt->execute();
     }
 
    

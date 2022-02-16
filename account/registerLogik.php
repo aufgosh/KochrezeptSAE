@@ -17,17 +17,21 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")) {
     //$dbAdatapter->checkIfUserExists($user->getUsername());
     $Username = $user->getUsername();
     
-    if ($dbAdatapter->CheckIfUserIsTaken($username)==1)
-    {
-        echo "Nutzername schon vergeben";
-        
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
     }else
     {
-        echo "Nutzer angelegt";
+        if ($dbAdatapter->CheckIfUserIsTaken($username)==1)
+        {
+            echo "Nutzername schon vergeben";
+        
+        }else
+        {
 
-
-        $param_password = hash('sha256', $_POST["password"]);
-        $param_confirm_password = hash('sha256', $_POST["confirm_password"]);
+            $param_password = hash('sha256', $_POST["password"]);
+            $param_confirm_password = hash('sha256', $_POST["confirm_password"]);
         if (!empty($_POST["password"])) {
             if ($param_password == $param_confirm_password) {
                 $dbAdatapter->InsertUserRegestration($Username, $param_password);
@@ -42,6 +46,9 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")) {
         }
 
     }
+    }
+
+    
   
     
     
