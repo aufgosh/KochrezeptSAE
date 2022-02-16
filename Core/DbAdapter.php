@@ -199,17 +199,29 @@ class DbAdapter
     public function CheckIfUserIsTaken($username)
     {
         
-        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
+        $user = new User();
+
+        $stmt = $this->connector->prepare("SELECT *  FROM nutzer WHERE User=?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        
-        if ($row = $result->fetch_assoc())
-        {
-            $User = $row['User'];
-            echo $User;
+
+        while ($row = $result->fetch_assoc()) {
+            $user->setID($row['NutzerID']);
+            $user->setUsername($row['User']);
+            $user->setPassword($row['Password']);
         }
-        return $User;
+        if ($user->getUsername() == $username) {
+            $exists = true;
+            echo $exists;
+        }else
+        {
+            $exists = false;
+            echo $exists;
+            
+        }
+
+        return $exists;
 
     }
 

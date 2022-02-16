@@ -17,25 +17,38 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")) {
     //$dbAdatapter->checkIfUserExists($user->getUsername());
     $Username = $user->getUsername();
     
-    $dbAdatapter->CheckIfUserIsTaken($username);
-    
-    
-
-
-
-    $param_password = hash('sha256', $_POST["password"]);
-    $param_confirm_password = hash('sha256', $_POST["confirm_password"]);
-    if (!empty($_POST["password"])) {
-        if ($param_password == $param_confirm_password) {
-            $dbAdatapter->InsertUserRegestration($Username, $param_password);
-        }else
-        {
-            echo "Passwörter Stimmen nicht überein.";
-        }
+    if ($dbAdatapter->CheckIfUserIsTaken($username)==1)
+    {
+        echo "Nutzername schon vergeben";
+        
     }else
     {
-        echo "gib ein Passwort ein";
+        echo "Nutzer angelegt";
+
+
+        $param_password = hash('sha256', $_POST["password"]);
+        $param_confirm_password = hash('sha256', $_POST["confirm_password"]);
+        if (!empty($_POST["password"])) {
+            if ($param_password == $param_confirm_password) {
+                $dbAdatapter->InsertUserRegestration($Username, $param_password);
+                header("location: login.php");
+            }else
+            {   
+                echo "Passwörter Stimmen nicht überein.";
+            }
+        }else
+        {
+            echo "gib ein Passwort ein";
+        }
+
     }
+  
+    
+    
+
+
+
+    
     
     //echo $param_password;
     //$dbAdatapter->InsertUserRegestration($Username, $param_password);
