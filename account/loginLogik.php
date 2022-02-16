@@ -1,9 +1,5 @@
 <?php 
 
-require_once "../req/sql.php";
-// Define variables and initialize with empty values
-//$dbAdatapter = \Core\DbAdapter::getInstance();
-$username = $password = "";
 require_once "../Autoloader.php";
 
 
