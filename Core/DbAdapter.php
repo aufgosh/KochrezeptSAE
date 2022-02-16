@@ -232,11 +232,8 @@ class DbAdapter
 
     }
 
-
-
-public
-function registerUser($username, $password, $repeatpassword)
-{
+    public function registerUser($username, $password, $repeatpassword) {
+        
     $user = new User();
     $errorhandler = new ErrorHandler();
     $message = null;
