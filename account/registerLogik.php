@@ -14,7 +14,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST")) {
     $dbAdatapter = \Core\DbAdapter::getInstance();
     $user->setUsername($username);
     $dbAdatapter->checkIfUserExists($user->getUsername());
-    echo $dbAdatapter->checkIfUserExists($user->getUsername());
+    echo $dbAdatapter->checkIfUserExists("test");
 }
 
 
