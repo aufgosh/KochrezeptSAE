@@ -1,9 +1,7 @@
 <?php
 require_once "Autoloader.php";
-
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/req/template/header.php";
-include_once($path);
+require_once "main/Constants.php";
+require_once(PATH_HEADER_INDEX_HEADER_TEMPLATE);
 ?>
 
 <body class="text-center">
@@ -16,7 +14,5 @@ include_once($path);
 </div>
 
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/req/template/footer.php";
-include_once($path);
+require_once(PATH_HEADER_INDEX_FOOTER_TEMPLATE);
 ?>
