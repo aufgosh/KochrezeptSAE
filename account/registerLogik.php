@@ -10,17 +10,14 @@ require_once "../Autoloader.php";
 use Entities\User;
 
 if (($_SERVER["REQUEST_METHOD"] == "POST")) {
-    $user = new User();
     $dbAdatapter = \Core\DbAdapter::getInstance();
-    $user->setUsername($username);
-    $dbAdatapter->checkIfUserExists($user->getUsername());
-    echo $dbAdatapter->checkIfUserExists("test");
+    $dbAdatapter->registerUser($_POST["username"], $_POST["password"], $_POST["repeatpassword"]);
 }
 
 
 /*class Register
 {   
-    
+    <
 
     public static function setRegisterUsername($username) {
         

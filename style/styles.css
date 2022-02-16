@@ -12,6 +12,24 @@ body {
   color: lavender;
 }
 
+.return-handler {
+    height: 100px;
+    width: 100%;
+    border: 2px solid;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+.return-handler.error {
+    background: #d77171;
+    border-color: #d00808;
+}
+
+.return-handler.success {
+    background: #75b581;
+    border-color: #3cde18;
+}
+
+
 body {
   display: -ms-flexbox;
   display: -webkit-box;

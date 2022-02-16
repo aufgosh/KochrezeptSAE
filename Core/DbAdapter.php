@@ -174,6 +174,8 @@ class DbAdapter
      */
     public function getUserForReceipt($RecipeID)
     {
+        $User = "error";
+
         $stmt = $this->connector->prepare("SELECT gericht.GerichtID, gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
         FROM gericht
         INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID
@@ -188,27 +190,45 @@ class DbAdapter
         }
         return $User;
     }
-    public function checkIfUserExists($username)
+    public function registerUser($username, $password, $repeatpassword)
     {
-        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
-        
-        //$result = $this->connector->query($query) or die($this->connector->error);
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) 
-        {
-            $User = $row['User'];
-            $NutzerID = $row['NutzerID'];
-            echo $User;
+        $user = new User();
+        $errorhandler = new ErrorHandler();
+        $message = null;
+        $alert = null;
+        $success = null;
+        $errorbool = true;
+
+        if($password == $repeatpassword) {
+            $password = hash('sha256', $password);
+            $user->setPassword($password);
+
+            $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if (mysqli_num_rows($result) == 1)
+            {
+                $alert = "Username bereits vergeben.";
+            } else {
+                $user->setUsername($username);
+                $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
+                $stmt->bind_param("ss", $username, $password);
+                $stmt->execute();
+                $success = "Benutzer erfolgreich angelegt.";
+            }
+        } else {
+            $alert = "passwörter stimmen nicht über ein.";
+
         }
-        if ($User == $username) {
-            $exists = false;
-        }else
-        {
-            $exists = true;
+
+        if($alert != null) {
+            $message = $_POST["message"] = $alert;
+            $errorbool = true;
+        } else {
+            $message = $_POST["message"] = $success;
+            $errorbool = false;
         }
-        echo $exists;
-        return $exists;
+        $errorhandler->displayMessage($message, $errorbool);
     }
 }
