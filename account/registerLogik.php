@@ -12,9 +12,34 @@ use Entities\User;
 if (($_SERVER["REQUEST_METHOD"] == "POST")) {
     $user = new User();
     $dbAdatapter = \Core\DbAdapter::getInstance();
+    $username = $_POST["username"];
     $user->setUsername($username);
-    $dbAdatapter->checkIfUserExists($user->getUsername());
-    echo $dbAdatapter->checkIfUserExists("test");
+    //$dbAdatapter->checkIfUserExists($user->getUsername());
+    $Username = $user->getUsername();
+    
+    $dbAdatapter->CheckIfUserIsTaken($username);
+    
+    
+
+
+
+    $param_password = hash('sha256', $_POST["password"]);
+    $param_confirm_password = hash('sha256', $_POST["confirm_password"]);
+    if (!empty($_POST["password"])) {
+        if ($param_password == $param_confirm_password) {
+            $dbAdatapter->InsertUserRegestration($Username, $param_password);
+        }else
+        {
+            echo "Passwörter Stimmen nicht überein.";
+        }
+    }else
+    {
+        echo "gib ein Passwort ein";
+    }
+    
+    //echo $param_password;
+    //$dbAdatapter->InsertUserRegestration($Username, $param_password);
+    
 }
 
 

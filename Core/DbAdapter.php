@@ -188,27 +188,30 @@ class DbAdapter
         }
         return $User;
     }
-    public function checkIfUserExists($username)
+    
+    public function InsertUserRegestration($username, $param_password)
     {
-        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
+        $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?) ");
+        $stmt->bind_param("ss", $username, $param_password);
+        $stmt->execute();
+    }
+
+    public function CheckIfUserIsTaken($username)
+    {
         
-        //$result = $this->connector->query($query) or die($this->connector->error);
+        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) 
+        
+        if ($row = $result->fetch_assoc())
         {
             $User = $row['User'];
-            $NutzerID = $row['NutzerID'];
             echo $User;
         }
-        if ($User == $username) {
-            $exists = false;
-        }else
-        {
-            $exists = true;
-        }
-        echo $exists;
-        return $exists;
+        return $User;
+
     }
+
+   
 }
