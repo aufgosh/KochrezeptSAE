@@ -1,6 +1,8 @@
 <?php 
+
 require_once "../req/sql.php";
 // Define variables and initialize with empty values
+//$dbAdatapter = \Core\DbAdapter::getInstance();
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 require_once "../Autoloader.php";
@@ -8,30 +10,42 @@ require_once "../Autoloader.php";
 use Entities\User;
 
 class Register
-{
+{   
+    
 
     public static function setRegisterUsername($username) {
+        
         $user = new User();
+        $dbAdatapter = \Core\DbAdapter::getInstance();
+
+        //$dbAdatapter = new DBAdapter();
         $user->setUsername($username);
-        Register::checkIfUserExists($user->getUsername());
+        //Register::checkIfUserExists($user->getUsername());
+        $dbAdatapter->checkIfUserExists($user->getUsername());
+        echo $user->getUsername();
+        echo "test";
+        
     }
 
     public function setRegisterPassword($password) {
         $user->setPassword($password);
     }
 
-    public static function checkIfUserExists($username) {
+
+
+    /*public static function checkIfUserExists($username) {
         $stmt = \Core\DbAdapter::getConnector()->prepare("SELECT NutzerID FROM nutzer WHERE User = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
+        
         if(mysqli_stmt_num_rows($result) == 1) {
             echo "nicht ok";
         } else {
             echo "ok";
         }
 
-    }
+    }*/
     
     function getInformationFromUI()
     {
@@ -71,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 /* store result */
-                mysqli_stmt_store_result($stmt);
+                  mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
                     $username_err = "This username is already taken.";
