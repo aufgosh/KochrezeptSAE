@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "SELECT NutzerID, user, Password FROM nutzer WHERE User = ?";
 
         if ($stmt = \Core\DbAdapter::getConnector()->prepare($sql)) {
-            // Bind variables to the prepared statement ass parameters
+            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $username);
 
             // Set parameters and hash the password so it can be checked with the hash in the DB.

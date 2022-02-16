@@ -40,14 +40,17 @@ class DbAdapter
 
         $user = new User();
 
-        $query = 'SELECT NutzerID, User, Password  FROM nutzer WHERE NutzerID=' . $NutzerID;
-        $result = $this->connector->query($query) or die($this->connector->error);
-        $row = $result->fetch_assoc();
-        if ($row) {
+        $stmt = $this->connector->prepare("SELECT NutzerID, User, Password  FROM nutzer WHERE NutzerID=?");
+        $stmt->bind_param("s", $NutzerID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
             $user->setID($row['NutzerID']);
             $user->setUsername($row['User']);
             $user->setPassword($row['Password']);
         }
+
 
         return $user;
     }
@@ -57,21 +60,22 @@ class DbAdapter
     public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser)
     {
 
-        $query = "INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
-                  VALUES ('$name', '$anleitung', '$bild', '$beschreibung', '$zutaten', '$category', '$createdByUser')";
-                  var_dump( $query);
-        $this->connector->query($query) or die($this->connector->error);
+
+        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser);
+        $stmt->execute();
     }
     /**
      * Rezepte von der Datenbank holen und in Globale Variablen speichern. 
      */
     public function listRecipes($id = null)
     {
+
         $query = "SELECT * FROM gericht ORDER BY GerichtID DESC ";
         $result = $this->connector->query($query) or die($this->connector->error);
 
         $allRecipes = [];
-
         $counter = 0;
         while ($row = $result->fetch_assoc()) {
             if (null === $id || $row['nutzer_NutzerID'] == $id) {
@@ -85,7 +89,6 @@ class DbAdapter
                 } else {
                     $allRecipes[$counter]->setBild("uploads/default.jpg");
                 }
-                echo file_exists($row["Bild"]);
                 
 
             }
@@ -101,10 +104,12 @@ class DbAdapter
 
         $recipe = new Recipe();
 
-        $query = 'SELECT * FROM gericht WHERE GerichtID =' . $RecipeID;
-        $result = $this->connector->query($query) or die($this->connector->error);
-        $row = $result->fetch_assoc();
-        if ($row) {
+        $stmt = $this->connector->prepare("SELECT * FROM gericht WHERE GerichtID = ?");
+        $stmt->bind_param("s", $RecipeID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
             $recipe->setID($row['GerichtID']);
             $recipe->setRezeptName($row['Name']);
             $recipe->setZutaten($row['Zutaten']);
@@ -142,10 +147,13 @@ class DbAdapter
 
         $recipe = new Recipe();
 
-        $query = 'SELECT Name, Zubereitungsanleitung, Bild, Beschreibung, Zutaten, nutzer_NutzerID FROM gericht WHERE GerichtID =' . $RecipeID;
-        $result = $this->connector->query($query) or die($this->connector->error);
-        $row = $result->fetch_assoc();
-        if ($row) {
+
+        $stmt = $this->connector->prepare("SELECT Name, Zubereitungsanleitung, Bild, Beschreibung, Zutaten, nutzer_NutzerID FROM gericht WHERE GerichtID = ?");
+        $stmt->bind_param("s", $RecipeID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($row = $result->fetch_assoc()) {
             $recipe->setID($row['GerichtID']);
             $recipe->setRezeptName($row['Name']);
             $recipe->setRezeptBeschreibung($row['Beschreibung']);
@@ -166,14 +174,15 @@ class DbAdapter
      */
     public function getUserForReceipt($RecipeID)
     {
-
-        $query = "SELECT gericht.GerichtID, gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
+        $stmt = $this->connector->prepare("SELECT gericht.GerichtID, gericht.nutzer_NutzerID, nutzer.NutzerID, nutzer.User
         FROM gericht
         INNER JOIN nutzer ON gericht.nutzer_NutzerID=nutzer.NutzerID
-        WHERE '$RecipeID' = gericht.nutzer_NutzerID;";
-        $result = $this->connector->query($query) or die($this->connector->error);
-        $row = $result->fetch_assoc();
-        if ($row) {
+        WHERE ? = gericht.nutzer_NutzerID;");
+        $stmt->bind_param("s", $RecipeID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
             $User = $row['User'];
             echo $User;
         }
