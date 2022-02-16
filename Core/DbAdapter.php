@@ -231,16 +231,4 @@ class DbAdapter
         }
         $errorhandler->displayMessage($message, $errorbool);
     }
-    
-    /**
-     * Registration des Nutzers;
-     */
-    public function InsertUserRegestration($username, $param_password)
-    {
-        $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?) ");
-        $stmt->bind_param("ss", $username, $param_password);
-        $stmt->execute();
-    }
-
-   
 }
