@@ -9,7 +9,16 @@ require_once "../Autoloader.php";
 
 use Entities\User;
 
-class Register
+if (($_SERVER["REQUEST_METHOD"] == "POST")) {
+    $user = new User();
+    $dbAdatapter = \Core\DbAdapter::getInstance();
+    $user->setUsername($username);
+    $dbAdatapter->checkIfUserExists($user->getUsername());
+    echo $dbAdatapter->checkIfUserExists($user->getUsername());
+}
+
+
+/*class Register
 {   
     
 
@@ -47,7 +56,7 @@ class Register
 
     }*/
     
-    function getInformationFromUI()
+    /*function getInformationFromUI()
     {
         if (empty(trim($_POST["username"]))) {
             $username_err = "Please enter a usernae.";
@@ -62,7 +71,7 @@ class Register
     }
 }
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+/*if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validate username
     if(empty(trim($_POST["username"]))){
@@ -85,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 /* store result */
-                  mysqli_stmt_store_result($stmt);
+/*                  mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
                     $username_err = "This username is already taken.";
@@ -153,5 +162,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     mysqli_close($link);
-}
+}*/
 ?>

@@ -193,12 +193,14 @@ class DbAdapter
 
         $query = "SELECT * FROM nutzer WHERE User = '$username'";
         $result = $this->connector->query($query) or die($this->connector->error);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
         $row = $result->fetch_assoc();
         if ($row) 
         {
             $User = $row['User'];
             $NutzerID = $row['NutzerID'];
-
+            echo $User;
         }
         if ($User == $username) {
             $exists = false;
