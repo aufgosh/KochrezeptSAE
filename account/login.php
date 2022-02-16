@@ -1,11 +1,8 @@
 <?php
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/header.php";
-   include_once($path);
-
-   $login = $_SERVER['DOCUMENT_ROOT'];
-   $login .= "/account/loginLogik.php";
-   include_once($login);
+require_once "../Autoloader.php";
+require_once "../main/Constants.php";
+require_once(PATH_HEADER_INDEX_HEADER_TEMPLATE);
+require_once(PATH_LOGIN_LOGIC_TEMPLATE);
 ?>
 
   <body class="text-center">
@@ -31,6 +28,4 @@
     </div>
 
    <?php
-   $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/req/template/footer.php";
-   include_once($path);
+require_once(PATH_HEADER_INDEX_FOOTER_TEMPLATE);
