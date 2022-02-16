@@ -3,10 +3,14 @@ require_once "../req/sql.php";
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
+require_once "../Autoloader.php";
+
  
 
 class Register
 {
+    $user = new User();
+    
     function getInformationFromUI()
     {
         if (empty(trim($_POST["username"]))) {
@@ -16,6 +20,7 @@ class Register
             $username_err = "Username can only contain letters, numbers and underscores.";
         }else
         {
+            checkIfUserExists($_POST["username"]);
             
         }
     }

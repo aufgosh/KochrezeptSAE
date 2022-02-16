@@ -179,4 +179,25 @@ class DbAdapter
         }
         return $User;
     }
+    public function checkIfUserExists($username)
+    {
+
+        $query = "SELECT * FROM nutzer WHERE User = '$username'";
+        $result = $this->connector->query($query) or die($this->connector->error);
+        $row = $result->fetch_assoc();
+        if ($row) 
+        {
+            $User = $row['User'];
+            $NutzerID = $row['NutzerID']
+
+        }
+        if ($User == $username) {
+            $exists = false;
+        }else
+        {
+            $exists = true;
+        }
+        echo $exists;
+        return $exists;
+    }
 }
