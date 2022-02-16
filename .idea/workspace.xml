@@ -20,13 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08191a65-98f5-4b33-9afc-f28c54f21426" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Core/ErrorHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/DbAdapter.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/DbAdapter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/registerLogik.php" beforeDir="false" afterPath="$PROJECT_DIR$/account/registerLogik.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/style/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,8 @@
       <option name="presentableId" value="Default" />
       <updated>1645023846469</updated>
       <workItem from="1645023851553" duration="90000" />
-      <workItem from="1645023947735" duration="7099000" />
+      <workItem from="1645023947735" duration="10269000" />
+      <workItem from="1645049402551" duration="2009000" />
     </task>
     <servers />
   </component>
@@ -77,6 +73,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="540" y="195" key="#CLI_Interpreters" timestamp="1645026206914">
@@ -95,10 +92,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="461" y="185" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1645026214372" />
-    <state x="667" y="258" width="585" height="564" key="find.popup" timestamp="1645028535822">
+    <state x="667" y="258" width="585" height="564" key="find.popup" timestamp="1645049634614">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="667" y="258" width="585" height="564" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1645028535822" />
+    <state x="667" y="258" width="585" height="564" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1645049634614" />
     <state x="623" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1645029687834">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
