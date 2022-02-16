@@ -4,7 +4,6 @@ require_once "../req/sql.php";
 // Define variables and initialize with empty values
 //$dbAdatapter = \Core\DbAdapter::getInstance();
 $username = $password = "";
-$username_err = $password_err = $login_err = "";
 require_once "../Autoloader.php";
 
 use Entities\User;

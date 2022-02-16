@@ -193,6 +193,11 @@ class DbAdapter
 
     public function loginUser($username, $password) {
         
+        $user = new User();
+        $errorhandler = new ErrorHandler();
+        $message = null;
+        $alert = null;
+
         // Check if the user is already logged in, if yes then redirect him to welcome page
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             header("location: /main/index");
@@ -201,19 +206,18 @@ class DbAdapter
 
         // Processing form data when form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
             // Check if username is empty
-            if (empty(trim($_POST["username"]))) {
-                $username_err = "Please enter username.";
+            if (empty(trim($username))) {
+                $alert = "Please enter username.";
             } else {
-                $username = trim($_POST["username"]);
+                $username = trim($password);
             }
 
             // Check if password is empty and give an error if epmty
-            if (empty(trim($_POST["password"]))) {
-                $password_err = "Please enter your password.";
+            if (empty(trim($password))) {
+                $alert = "Please enter your password.";
             } else {
-                $password = trim($_POST["password"]);
+                $password = trim($password);
             }
 
             // Validate credentials
@@ -257,26 +261,30 @@ class DbAdapter
                                     header("location: /main/index");
                                 } else {
                                     // Password is not valid, display a generic error message
-                                    $login_err = "Invalid username or password.";
-                                    echo $login_err;
+                                    $alert = "Invalid username or password.";
                                 }
                             }
                         } else {
                             // Username doesn't exist, display a generic error message
-                            $login_err = "Invalid username or password.";
-                            echo $login_err;
+                            $alert = "Invalid username or password.";
+                            
                         }
                     } else {
-                        echo "Oops! Something went wrong. Please try again later.";
+                        $alert = "Oops! Something went wrong. Please try again later.";
                     }
-
                     // Close statement
                     mysqli_stmt_close($stmt);
                 }
             }
 
+            if($alert != null) {
+                    $message = $_POST["message"] = $alert;
+                    $errorbool = true;
+            } 
+            $errorhandler->displayMessage($message, $errorbool);
+
             // Close connection
-            mysqli_close($link);
+            //mysqli_close($link);
         }
     }
 
