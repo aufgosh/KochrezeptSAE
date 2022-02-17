@@ -1,5 +1,6 @@
 <?php
 
+
 define("WEBROOT",$_SERVER['DOCUMENT_ROOT']);
 
 //MAIN_INDEX_PATHS

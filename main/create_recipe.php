@@ -9,7 +9,6 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
     <!-- Sidebar  -->
     <?php
     require_once(PATH_MAIN_SIDEBAR_TEMPLATE);
-    require_once "../main/create_recipe_logic.php";
     ?>
     <div class="container">
         <!-- Page Content  -->
@@ -25,6 +24,7 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
                 <div class="">
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="col-md-9">
+                            <?php require_once "../main/create_recipe_logic.php";?>
                             <h3>Rezeptname</h3>
                             <input required placeholder="Rezeptname" class="create-recipe-recipe-name" name="txtRezeptName" style="width: 100%;">
                             <br>

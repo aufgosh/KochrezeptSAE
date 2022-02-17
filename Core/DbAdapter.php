@@ -262,8 +262,6 @@ class DbAdapter
         $alert = "passwörter stimmen nicht über ein.";
 
     }
-    $errorhandler->displayMessage($message, $errorbool);
-//}
 
     if ($alert != null) {
         $message = $_POST["message"] = $alert;
