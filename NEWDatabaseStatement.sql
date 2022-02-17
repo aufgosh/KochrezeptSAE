@@ -14,21 +14,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `rezept` DEFAULT CHARACTER SET utf8 ;
 USE `rezept` ;
- 
--- -----------------------------------------------------
--- Table `rezept`.`kategorie`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rezept`.`kategorie` (
-  `idKategorie` INT(11) NOT NULL AUTO_INCREMENT,
-  `Kategorie` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idKategorie`))
- 
-DEFAULT CHARACTER SET = utf8;
-INSERT INTO kategorie
-  (`idKategorie`, `Kategorie`)
-VALUES
-  (1, "hauptspeisen");
- 
+
 -- -----------------------------------------------------
 -- Table `rezept`.`nutzer`
 -- -----------------------------------------------------
@@ -51,7 +37,7 @@ VALUES
 CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `GerichtID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(255) NULL DEFAULT NULL,
-  `Zubereitungsanleitung` VARCHAR(255) NULL DEFAULT NULL,
+  `Zubereitungsanleitung` LONGTEXT NULL DEFAULT NULL,
   `Beschreibung` VARCHAR(255) NULL DEFAULT NULL,
   `Bild` LONGBLOB NULL DEFAULT NULL,
   `Zutaten` LONGTEXT NULL DEFAULT NULL,
@@ -73,25 +59,7 @@ INSERT INTO gericht
   (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Zutaten`,`kategorie_idKategorie`,`nutzer_NutzerID`)
   VALUES
     (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","Zutaten oder so",1,1 );
- 
--- -----------------------------------------------------
--- Table `rezept`.`zutaten`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rezept`.`zutaten` (
-  `idZutaten` INT(11) NOT NULL,
-  `Name` VARCHAR(255) NULL DEFAULT NULL,
-  `Menge` INT(11) NULL DEFAULT NULL,
-  `gericht_GerichtID` INT(11) NOT NULL,
-  PRIMARY KEY (`idZutaten`),
-    FOREIGN KEY (`gericht_GerichtID`)
-    REFERENCES `rezept`.`gericht` (`GerichtID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-DEFAULT CHARACTER SET = utf8;
-INSERT INTO zutaten 
-  (`idZutaten`, `Name`, `Menge`, `gericht_GerichtID`)
-VALUES
-  (1,"Salz","300",1);
+
  
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
