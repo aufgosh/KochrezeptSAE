@@ -61,9 +61,9 @@ class DbAdapter
     {
 
 
-        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
+        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, nutzer_NutzerID) 
         VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss", $name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser);
+        $stmt->bind_param("ssssss", $name, $anleitung, $bild, $beschreibung, $zutaten, $createdByUser);
         $stmt->execute();
     }
 
