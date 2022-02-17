@@ -1,6 +1,5 @@
 <?php
-
-
+namespace Core\Constants;
 define("WEBROOT", $_SERVER['DOCUMENT_ROOT']);
 
 //MAIN_INDEX_PATHS
@@ -19,3 +18,8 @@ define("PATH_LOGIN_LOGIC_TEMPLATE", WEBROOT . "/account/loginLogik.php");
 
 
 define("PATH_RECIPE_LIST_TEMPLATE", WEBROOT . "/req/template/recipe-list-template.php");
+
+abstract class Constants {
+    public const PATH_MAIN_HEADER_TEMPLATE="/req/template/main-header.php";
+}
+

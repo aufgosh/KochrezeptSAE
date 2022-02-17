@@ -93,7 +93,5 @@ namespace Entities {
         {
             $this->Bild = $Bild;
         }
-
-
     }
 }

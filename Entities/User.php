@@ -42,9 +42,9 @@ namespace Entities {
         public function UserIDFrontendCheck($id)
         {
             if ($id == $_SESSION['id']) {
-                echo "Dein Profil";
+                return "Dein Profil";
             } else {
-                echo "User Profil";
+                return "User Profil";
             }
         }
 

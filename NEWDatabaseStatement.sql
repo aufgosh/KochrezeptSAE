@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `rezept`.`nutzer` (
   `Password` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`NutzerID`))
  
-AUTO_INCREMENT = 3
+-- AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8;
 INSERT INTO Nutzer
 	(`NutzerID`, `User`, `Password`)

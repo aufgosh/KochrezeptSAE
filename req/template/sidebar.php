@@ -1,6 +1,6 @@
 <nav id="sidebar">
     <div class="sidebar-header">
-        <a href="/main/index"><h3 class="sidebar-header-headline">Coogle</h3></a>
+        <a href="/dashboard/index"><h3 class="sidebar-header-headline">Coogle</h3></a>
     </div>
 
     <ul class="list-unstyled components">
@@ -9,7 +9,7 @@
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="/main/index">Neuste Rezepte</a>
+                    <a href="/dashboard/index">Neuste Rezepte</a>
                 </li>
             </ul>
         </li>
@@ -17,13 +17,13 @@
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Account</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
-                    <a href="/main/profile?id=<?php echo $_SESSION["id"] ?>">Profil</a>
+                    <a href="/dashboard/profile?id=<?php echo $_SESSION["id"] ?>">Profil</a>
                 </li>
                 <li>
-                    <a href="/main/user_recipes">Deine Rezepte</a>
+                    <a href="/dashboard/user_recipes">Deine Rezepte</a>
                 </li>
                 <li>
-                    <a href="/main/create_recipe">Rezept erstellen</a>
+                    <a href="/dashboard/create_recipe">Rezept erstellen</a>
                 </li>
             </ul>
         </li>
