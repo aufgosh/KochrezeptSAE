@@ -2,6 +2,7 @@
 require_once "../Autoloader.php";
 $dbAdatapter = \Core\DbAdapter::getInstance();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $BildUploadFunktioniert = false;
     /*
     echo "<pre>";
     var_dump($_POST);
@@ -49,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     $status = 'success';
                     $statusMsg = "File uploaded successfully.";
+                    $BildUploadFunktioniert = true;
                 } else {
                     $statusMsg = "File upload failed, please try again.";
                 }
@@ -60,15 +62,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    if($BildUploadFunktioniert == true)
+    {
+        $RezeptName = $_POST['txtRezeptName'];
+        $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
+        $Zutaten = join("|", $_POST['zutat']);
+        $RezeptZubereitung = $_POST['txtZubreitung'];
+        $Bild = $target_file;
 
+        $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, 1, $_SESSION["id"]);
+    }
 
-    $RezeptName = $_POST['txtRezeptName'];
-    $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
-    $Zutaten = join("|", $_POST['zutat']);
-    $RezeptZubereitung = $_POST['txtZubreitung'];
-    $Bild = $target_file;
-
-    $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, 1, $_SESSION["id"]);
+    
 
 
 
