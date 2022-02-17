@@ -5,7 +5,7 @@ require_once(PATH_HEADER_INDEX_HEADER_TEMPLATE);
 
 ?>
 
-<body class="text-center">
+    <body class="text-center">
 
 
 <div class="container margin-auto">
@@ -39,4 +39,3 @@ require_once(PATH_HEADER_INDEX_HEADER_TEMPLATE);
 
 <?php
 require_once(PATH_HEADER_INDEX_FOOTER_TEMPLATE);
-?>

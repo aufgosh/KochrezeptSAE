@@ -47,32 +47,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($BildUploadFunktioniert == true) {
-        if(!empty($_POST['txtRezeptName'])) {
+        if (!empty($_POST['txtRezeptName'])) {
             $RezeptName = $_POST['txtRezeptName'];
         } else {
             $alert = "Bitte Rezeptname ausfüllen.";
         }
 
-        if(!empty($_POST['txtRezeptBeschreiung'])) {
+        if (!empty($_POST['txtRezeptBeschreiung'])) {
             $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
         } else {
             $alert = "Bitte Rezeptbeschreibung ausfüllen.";
         }
 
-        if(!empty($_POST['zutat'])) {
+        if (!empty($_POST['zutat'])) {
             $Zutaten = join("|", $_POST['zutat']);
         } else {
             $alert = "Bitte Zutaten hinzufügen.";
         }
 
-        if(!empty($_POST['txtZubreitung'])) {
+        if (!empty($_POST['txtZubreitung'])) {
             $RezeptZubereitung = $_POST['txtZubreitung'];
         } else {
             $alert = "Bitte Rezeptzubereitung hinzufügen.";
         }
         $Bild = $target_file;
 
-        if($alert == null) {
+        if ($alert == null) {
             $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, 1, $_SESSION["id"]);
         }
     }

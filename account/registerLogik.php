@@ -1,7 +1,5 @@
-<?php 
-
+<?php
 require_once "../Autoloader.php";
-
 
 if (($_SERVER["REQUEST_METHOD"] == "POST")) {
     $dbAdatapter = \Core\DbAdapter::getInstance();
