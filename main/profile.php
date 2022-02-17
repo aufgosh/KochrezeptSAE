@@ -18,7 +18,7 @@ $dbAdatapter = \Core\DbAdapter::getInstance();
             <?php
             require_once(PATH_MAIN_INDEX_NAVBAR_TEMPLATE);
 
-            $user = $dbAdatapter->getUser($_GET["id"]);
+                $user = $dbAdatapter->getUserById($_GET["id"]);
 
             ?>
 

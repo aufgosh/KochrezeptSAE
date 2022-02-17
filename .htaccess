@@ -2,11 +2,16 @@ Options -MultiViews
 RewriteEngine on
  
 # remove php
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
-RewriteRule ^ %1 [R=301,L]
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+#RewriteRule ^ %1 [R=301,L]
  
 # rewrite with php
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+#RewriteRule ^(.+)/?$ $1.php [L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{DOCUMENT_ROOT}/$1.php -f
-RewriteRule ^(.+)/?$ $1.php [L]
+RewriteBase /
+RewriteRule ^(.+)\/(.+) index.php?controller=$1&action=$2 [L,QSA]

@@ -34,7 +34,7 @@ class DbAdapter
     /**
      * Abfrage des Users und speichern in einer Globalen Variable.
      */
-    public function getUser($NutzerID)
+    public function getUserById($NutzerID)
     {
 
         $user = new User();
@@ -54,14 +54,28 @@ class DbAdapter
         return $user;
     }
 
+    public function getUserByUsername(string $username)
+    {
+        $query = "SELECT * FROM nutzer WHERE User=?";
+
+        $statement = $this->connector->prepare($query);
+
+        $filteredUsername = mysqli_real_escape_string($this->connector, $username);
+        $statement->bind_param("s", $filteredUsername);
+
+        if ($statement->execute()) {
+            return $statement->get_result();
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Neues Rezept in Datenbank laden.
      */
     public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser)
     {
-
-
-        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, nutzer_NutzerID) 
+        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
         VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $name, $anleitung, $bild, $beschreibung, $zutaten, $createdByUser);
         $stmt->execute();
@@ -79,7 +93,7 @@ class DbAdapter
         $allRecipes = [];
         $counter = 0;
         while ($row = $result->fetch_assoc()) {
-            if (null === $id || $row['nutzer_NutzerID'] == $id) {
+            if (null == $id || $row['nutzer_NutzerID'] == $id) {
                 $allRecipes[$counter] = new Recipe();
                 $allRecipes[$counter]->setID($row['GerichtID']);
                 $allRecipes[$counter]->setRezeptName($row['Name']);
@@ -88,7 +102,7 @@ class DbAdapter
                 if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                     $allRecipes[$counter]->setBild($row["Bild"]);
                 } else {
-                    $allRecipes[$counter]->setBild("uploads/default.jpg");
+                    $allRecipes[$counter]->setBild("/main/uploads/default.jpg");
                 }
 
 
@@ -121,7 +135,7 @@ class DbAdapter
             if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                 $recipe->setBild($row["Bild"]);
             } else {
-                $recipe->setBild("uploads/default.jpg");
+                $recipe->setBild("/main/uploads/default.jpg");
             }
         }
 
@@ -135,9 +149,7 @@ class DbAdapter
     {
         $Zutaten = explode("|", $ingredients);
         foreach ($Zutaten as $zutate) {
-            echo "<li>";
-            echo $zutate;
-            echo "</li>";
+            return "<li>".$zutate."</li>";
         }
     }
 
@@ -190,77 +202,26 @@ class DbAdapter
 
         if ($row = $result->fetch_assoc()) {
             $User = $row['User'];
-            echo $User;
         }
         return $User;
     }
 
     public function loginUser($username, $password) {
 
-        $password = hash('sha256', $password);
-        $user = new User();
-        $errorhandler = new ErrorHandler();
-        $message = null;
-        $alert = null;
-
         $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($row = $result->fetch_assoc()) {
-            $user->setUsername($row['User']);
-            $user->setPassword($row['Password']);
-            $user->setID($row['NutzerID']);
-        } else {
-            $alert = "Username oder Passwort falsch.";
-        }
-        if ($user->getPassword() == $password) {
-
-            session_start();
-            $_SESSION["loggedin"] = true;
-            $_SESSION["id"] = $user->getID();
-            $_SESSION["username"] = $user->getUsername();
-            header("location: /main/index");
-        } else {
-            $alert = "Username oder Passwort falsch.";
-        }
-
-        if ($alert != null) {
-            $message = $_POST["message"] = $alert;
-            $errorhandler->displayMessage($message, true);
-        }
+        return $result;
 
     }
 
-    public function registerUser($username, $password, $repeatpassword) {
-        
-    $user = new User();
-    $errorhandler = new ErrorHandler();
-    $message = null;
-    $alert = null;
-    $success = null;
-    $errorbool = true;
-
-    if ($password == $repeatpassword) {
+    public function registerUser($username, $password)
+    {
         $password = hash('sha256', $password);
-        $user->setPassword($password);
-
-        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if (mysqli_num_rows($result) == 1) {
-            $alert = "Username bereits vergeben.";
-        } else {
-            $user->setUsername($username);
-            $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
-            $stmt->bind_param("ss", $username, $password);
-            $stmt->execute();
-            $success = "Benutzer erfolgreich angelegt.";
-        }
-    } else {
-        $alert = "passwörter stimmen nicht über ein.";
-
+        $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
+        $stmt->bind_param("ss", $username, $password);
+        return $stmt->execute();
     }
     $errorhandler->displayMessage($message, $errorbool);
 //}

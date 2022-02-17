@@ -14,7 +14,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `rezept` DEFAULT CHARACTER SET utf8 ;
 USE `rezept` ;
- 
 -- -----------------------------------------------------
 -- Table `rezept`.`nutzer`
 -- -----------------------------------------------------
@@ -24,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `rezept`.`nutzer` (
   `Password` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`NutzerID`))
  
-AUTO_INCREMENT = 3
+-- AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8;
 INSERT INTO Nutzer
 	(`NutzerID`, `User`, `Password`)
@@ -59,4 +58,8 @@ INSERT INTO gericht
   (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Zutaten`,`kategorie_idKategorie`,`nutzer_NutzerID`)
   VALUES
     (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","Zutaten oder so",1,1 );
+
  
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

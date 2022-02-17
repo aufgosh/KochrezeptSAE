@@ -21,8 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="08191a65-98f5-4b33-9afc-f28c54f21426" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/DbAdapter.php" beforeDir="false" afterPath="$PROJECT_DIR$/Core/DbAdapter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/create_recipe_logic.php" beforeDir="false" afterPath="$PROJECT_DIR$/main/create_recipe_logic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NEWDatabaseStatement.sql" beforeDir="false" afterPath="$PROJECT_DIR$/NEWDatabaseStatement.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
