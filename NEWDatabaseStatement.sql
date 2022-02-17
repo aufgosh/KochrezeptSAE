@@ -51,7 +51,7 @@ VALUES
 CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `GerichtID` INT(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(255) NULL DEFAULT NULL,
-  `Zubereitungsanleitung` VARCHAR(255) NULL DEFAULT NULL,
+  `Zubereitungsanleitung` LONGTEXT NULL DEFAULT NULL,
   `Beschreibung` VARCHAR(255) NULL DEFAULT NULL,
   `Bild` LONGBLOB NULL DEFAULT NULL,
   `Zutaten` LONGTEXT NULL DEFAULT NULL,
@@ -74,25 +74,3 @@ INSERT INTO gericht
   VALUES
     (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","Zutaten oder so",1,1 );
  
--- -----------------------------------------------------
--- Table `rezept`.`zutaten`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rezept`.`zutaten` (
-  `idZutaten` INT(11) NOT NULL,
-  `Name` VARCHAR(255) NULL DEFAULT NULL,
-  `Menge` INT(11) NULL DEFAULT NULL,
-  `gericht_GerichtID` INT(11) NOT NULL,
-  PRIMARY KEY (`idZutaten`),
-    FOREIGN KEY (`gericht_GerichtID`)
-    REFERENCES `rezept`.`gericht` (`GerichtID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-DEFAULT CHARACTER SET = utf8;
-INSERT INTO zutaten 
-  (`idZutaten`, `Name`, `Menge`, `gericht_GerichtID`)
-VALUES
-  (1,"Salz","300",1);
- 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
