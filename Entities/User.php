@@ -9,19 +9,14 @@ namespace Entities {
         private $username;
         private $password;
 
-        public function setID($id)
-        {
-            $this->id = $id;
-        }
-
         public function getID()
         {
             return $this->id;
         }
 
-        public function setUsername($username)
+        public function setID($id)
         {
-            $this->username = $username;
+            $this->id = $id;
         }
 
         public function getUsername()
@@ -29,9 +24,9 @@ namespace Entities {
             return $this->username;
         }
 
-        public function setPassword($password)
+        public function setUsername($username)
         {
-            $this->password = $password;
+            $this->username = $username;
         }
 
         public function getPassword()
@@ -39,8 +34,14 @@ namespace Entities {
             return $this->password;
         }
 
-        public function UserIDFrontendCheck($id) {
-            if($id == $_SESSION['id']) {
+        public function setPassword($password)
+        {
+            $this->password = $password;
+        }
+
+        public function UserIDFrontendCheck($id)
+        {
+            if ($id == $_SESSION['id']) {
                 echo "Dein Profil";
             } else {
                 echo "User Profil";

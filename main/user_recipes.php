@@ -6,29 +6,29 @@ $dbAdatapter = \Core\DbAdapter::getInstance();
 ?>
 
 
-<div class="wrapper">
-    <!-- Sidebar  -->
-    <?php
-    require_once(PATH_MAIN_SIDEBAR_TEMPLATE);
-    ?>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <?php
+        require_once(PATH_MAIN_SIDEBAR_TEMPLATE);
+        ?>
 
-    <div class="container">
-        <!-- Page Content  -->
-        <div id="content">
+        <div class="container">
+            <!-- Page Content  -->
+            <div id="content">
 
-            <?php
-            require_once(PATH_MAIN_INDEX_NAVBAR_TEMPLATE);
-            ?>
+                <?php
+                require_once(PATH_MAIN_INDEX_NAVBAR_TEMPLATE);
+                ?>
 
-            <h1>Deine Rezepte</h1>
-            <?php
-            $allRecp = \Core\DbAdapter::getInstance()->listRecipes($_SESSION['id']);
+                <h1>Deine Rezepte</h1>
+                <?php
+                $allRecp = \Core\DbAdapter::getInstance()->listRecipes($_SESSION['id']);
 
-            /** @var Recipe $recipe */
-            foreach ($allRecp as $recipe) {
+                /** @var Recipe $recipe */
+                foreach ($allRecp as $recipe) {
 
-                #include(PATH_RECIPE_LIST_TEMPLATE);
-                echo sprintf("<div class='line'></div>
+                    #include(PATH_RECIPE_LIST_TEMPLATE);
+                    echo sprintf("<div class='line'></div>
                 <div>
                      <h3 class='recipe-h3'>%s</h3>
                      <div class='row'>
@@ -40,13 +40,13 @@ $dbAdatapter = \Core\DbAdapter::getInstance();
                      </div>
                      <br>
                  <button class='btn btn-blue recipe-btn' onclick=\"window.location.href='../../main/recipe?id=%s'\">Rezept anschauen</button>
-             </div>", $recipe->getRezeptName(),$recipe->getBild(), $recipe->getRezeptBeschreibung(), $recipe->getID());
-            }
-            ?>
+             </div>", $recipe->getRezeptName(), $recipe->getBild(), $recipe->getRezeptBeschreibung(), $recipe->getID());
+                }
+                ?>
 
+            </div>
         </div>
     </div>
-</div>
 
 <?php
 require_once(PATH_MAIN_FOOTER_TEMPLATE);
