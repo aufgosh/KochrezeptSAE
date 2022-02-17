@@ -1,89 +1,82 @@
 <?php
-
-use Core\ErrorHandler;
-
 require_once "../Autoloader.php";
 $dbAdatapter = \Core\DbAdapter::getInstance();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $BildUploadFunktioniert = false;
+    /*
+    echo "<pre>";
+    var_dump($_POST);
+    echo "<pre>";
+    var_dump($_REQUEST);
 
-    $errorhandler = new ErrorHandler();
-    $message = null;
-    $alert = null;
-    $success = null;
-    $errorbool = true;
+    echo "<pre>";
+    var_dump($_GET);
+
+    $a = join("|", $_POST['zutat']);
+
+    var_dump($a);
+    echo PHP_EOL;
+    $b = explode("|", $a);
+
+    var_dump($b[1]);
+    */
+
+
 
     // Bildupload
-    // If file upload form is submitted
+    // If file upload form is submitted 
+    $status = $statusMsg = '';
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
     if (isset($_POST["submit"])) {
+        $status = 'error';
         if (!empty($_FILES["image"]["name"])) {
             // Get file info 
             $fileName = basename($_FILES["image"]["name"]);
             $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
 
 
-            // Allow certain file formats
+
+            // Allow certain file formats 
             $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
             if (in_array($fileType, $allowTypes)) {
                 $image = $_FILES['image']['tmp_name'];
                 $imgContent = addslashes(file_get_contents($image));
 
+
+
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                    $success = "Rezept erfolgreich hochgeladen.";
+                    $status = 'success';
+                    $statusMsg = "File uploaded successfully.";
                     $BildUploadFunktioniert = true;
                 } else {
-                    $alert = "Datei konnte nicht hoch geladen werden.";
+                    $statusMsg = "File upload failed, please try again.";
                 }
             } else {
-                $alert = 'Datei entspricht falschem Dateiformat (JPG, JPEG, PNG, GIF)';
+                $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
             }
         } else {
-            $alert = 'Datei ist nicht lesbar.';
+            $statusMsg = 'Please select an image file to upload.';
         }
     }
 
-    if ($BildUploadFunktioniert == true) {
-        if (!empty($_POST['txtRezeptName'])) {
-            $RezeptName = $_POST['txtRezeptName'];
-        } else {
-            $alert = "Bitte Rezeptname ausfüllen.";
-        }
-
-        if (!empty($_POST['txtRezeptBeschreiung'])) {
-            $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
-        } else {
-            $alert = "Bitte Rezeptbeschreibung ausfüllen.";
-        }
-
-        if (!empty($_POST['zutat'])) {
-            $Zutaten = join("|", $_POST['zutat']);
-        } else {
-            $alert = "Bitte Zutaten hinzufügen.";
-        }
-
-        if (!empty($_POST['txtZubreitung'])) {
-            $RezeptZubereitung = $_POST['txtZubreitung'];
-        } else {
-            $alert = "Bitte Rezeptzubereitung hinzufügen.";
-        }
+    if($BildUploadFunktioniert == true)
+    {
+        $RezeptName = $_POST['txtRezeptName'];
+        $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
+        $Zutaten = join("|", $_POST['zutat']);
+        $RezeptZubereitung = $_POST['txtZubreitung'];
         $Bild = $target_file;
 
-        if ($alert == null) {
-            $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, 1, $_SESSION["id"]);
-        }
+        $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, 1, $_SESSION["id"]);
     }
 
-    // Display status message
-    if ($alert != null) {
-        $message = $_POST["message"] = $alert;
-        $errorbool = true;
-    } else {
-        $message = $_POST["message"] = $success;
-        $errorbool = false;
-    }
-    $errorhandler->displayMessage($message, $errorbool);
+    
+
+
+
+    // Display status message 
+    echo $statusMsg;
 }

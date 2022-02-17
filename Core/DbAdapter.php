@@ -195,8 +195,7 @@ class DbAdapter
         return $User;
     }
 
-    public function loginUser($username, $password)
-    {
+    public function loginUser($username, $password) {
 
         $password = hash('sha256', $password);
         $user = new User();
@@ -233,46 +232,47 @@ class DbAdapter
 
     }
 
-    public function registerUser($username, $password, $repeatpassword)
-    {
+    public function registerUser($username, $password, $repeatpassword) {
+        
+    $user = new User();
+    $errorhandler = new ErrorHandler();
+    $message = null;
+    $alert = null;
+    $success = null;
+    $errorbool = true;
 
-        $user = new User();
-        $errorhandler = new ErrorHandler();
-        $message = null;
-        $alert = null;
-        $success = null;
-        $errorbool = true;
+    if ($password == $repeatpassword) {
+        $password = hash('sha256', $password);
+        $user->setPassword($password);
 
-        if ($password == $repeatpassword) {
-            $password = hash('sha256', $password);
-            $user->setPassword($password);
-
-            $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
-            $stmt->bind_param("s", $username);
+        $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if (mysqli_num_rows($result) == 1) {
+            $alert = "Username bereits vergeben.";
+        } else {
+            $user->setUsername($username);
+            $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $username, $password);
             $stmt->execute();
-            $result = $stmt->get_result();
-            if (mysqli_num_rows($result) == 1) {
-                $alert = "Username bereits vergeben.";
-            } else {
-                $user->setUsername($username);
-                $stmt = $this->connector->prepare("INSERT INTO nutzer (User, Password) VALUES (?, ?)");
-                $stmt->bind_param("ss", $username, $password);
-                $stmt->execute();
-                $success = "Benutzer erfolgreich angelegt.";
-            }
-        } else {
-            $alert = "passwörter stimmen nicht über ein.";
-
+            $success = "Benutzer erfolgreich angelegt.";
         }
+    } else {
+        $alert = "passwörter stimmen nicht über ein.";
 
-        if ($alert != null) {
-            $message = $_POST["message"] = $alert;
-            $errorbool = true;
-        } else {
-            $message = $_POST["message"] = $success;
-            $errorbool = false;
-        }
-        $errorhandler->displayMessage($message, $errorbool);
     }
+    $errorhandler->displayMessage($message, $errorbool);
+//}
+
+    if ($alert != null) {
+        $message = $_POST["message"] = $alert;
+        $errorbool = true;
+    } else {
+        $message = $_POST["message"] = $success;
+        $errorbool = false;
+    }
+    $errorhandler->displayMessage($message, $errorbool);
+}
 
 }

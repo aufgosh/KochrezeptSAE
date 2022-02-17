@@ -16,30 +16,6 @@ p {
     color: #999;
 }
 
-.return-handler {
-    height: 100px;
-    width: 100%;
-    border: 2px solid;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: rgb(230, 230, 250);
-}
-.return-handler.error {
-    background: #d77171;
-    border-color: #d00808;
-}
-
-.return-handler.success {
-    background: #75b581;
-    border-color: #3cde18;
-}
-
-.sidebar-header-headline:hover {
-    transition: 0.2s;
-    color: rgb(230, 230, 250);
-}
-
 a,
 a:hover,
 a:focus {

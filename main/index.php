@@ -4,7 +4,11 @@ use Entities\Recipe;
 
 require_once "Constants.php";
 require_once "../Autoloader.php";
+
+
+
 require_once(PATH_MAIN_HEADER_TEMPLATE);
+
 ?>
 
 
@@ -43,7 +47,7 @@ require_once(PATH_MAIN_HEADER_TEMPLATE);
                          </div>
                          <br>
                      <button class='btn btn-blue recipe-btn' onclick=\"window.location.href='../../main/recipe?id=%s'\">Rezept anschauen</button>
-                 </div>", $recipe->getRezeptName(), $recipe->getBild(), $recipe->getRezeptBeschreibung(), $recipe->getID());
+                 </div>", $recipe->getRezeptName(),$recipe->getBild(), $recipe->getRezeptBeschreibung(), $recipe->getID());
                 }
                 ?>
 
