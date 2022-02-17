@@ -1,6 +1,6 @@
 <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Coogle</h3>
+                <a href="/main/index"><h3 class="sidebar-header-headline">Coogle</h3></a>
             </div>
 
             <ul class="list-unstyled components">

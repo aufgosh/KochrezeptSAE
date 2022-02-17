@@ -35,6 +35,11 @@ p {
     border-color: #3cde18;
 }
 
+.sidebar-header-headline:hover {
+    transition: 0.2s;
+    color: rgb(230, 230, 250);
+}
+
 a,
 a:hover,
 a:focus {
