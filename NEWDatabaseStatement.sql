@@ -16,20 +16,6 @@ CREATE SCHEMA IF NOT EXISTS `rezept` DEFAULT CHARACTER SET utf8 ;
 USE `rezept` ;
  
 -- -----------------------------------------------------
--- Table `rezept`.`kategorie`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rezept`.`kategorie` (
-  `idKategorie` INT(11) NOT NULL AUTO_INCREMENT,
-  `Kategorie` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idKategorie`))
- 
-DEFAULT CHARACTER SET = utf8;
-INSERT INTO kategorie
-  (`idKategorie`, `Kategorie`)
-VALUES
-  (1, "hauptspeisen");
- 
--- -----------------------------------------------------
 -- Table `rezept`.`nutzer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `rezept`.`nutzer` (
