@@ -112,12 +112,12 @@ class DashboardController
                 $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, $_SESSION["id"]);
                 $success[] = "Rezept erfolgreich hochgeladen!";
                 $this->displayCreateRecipe($this->generateSuccessMarkup($success));
-                exit;
             }
 
 
+        } else {
+            $this->displayCreateRecipe();
         }
-        $this->displayCreateRecipe();
     }
 
     private function generateSuccessMarkup(array $success)
