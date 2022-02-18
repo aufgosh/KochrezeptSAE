@@ -54,6 +54,9 @@ class DbAdapter
         return $user;
     }
 
+    /**
+     * User über Namen Filtern und auslesen. 
+     */
     public function getUserByUsername(string $username)
     {
         $query = "SELECT * FROM nutzer WHERE User=?";
