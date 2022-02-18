@@ -28,7 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $imgContent = addslashes(file_get_contents($image));
 
 
-
+                /**
+                 * Check if the Picture is allowed to use.
+                 */
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     $status = 'success';
                     $statusMsg = "File uploaded successfully.";
@@ -43,7 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $statusMsg = 'Please select an image file to upload.';
         }
     }
-
+    /**
+     * If Picture check was successfull, Insert Data to Database.
+     */
     if($BildUploadFunktioniert == true)
     {
         $RezeptName = $_POST['txtRezeptName'];
