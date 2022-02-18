@@ -54,13 +54,15 @@ class DashboardController
 
     public function createRecipe() {
         $errorList = [];
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $dbAdatapter = \Core\DbAdapter::getInstance();
+        echo "test";
+        if ($_SERVER["REQUEST_METHOD"] == Constants\HTTPMethods::HTTP_POST) {
             $BildUploadFunktioniert = false;
             // Bildupload
             // If file upload form is submitted 
-            $status = $statusMsg = '';
-        
-            $target_dir = "uploads/";
+    
+            echo "test2";
+            $target_dir = "main/uploads/";
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
         
             if (isset($_POST["submit"])) {
@@ -68,16 +70,18 @@ class DashboardController
                     // Get file info 
                     $fileName = basename($_FILES["image"]["name"]);
                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-        
+                    echo "test3";
         
         
                     // Allow certain file formats 
                     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                     if (in_array($fileType, $allowTypes)) {
+                        echo "test5";
                         $image = $_FILES['image']['tmp_name'];
                         $imgContent = addslashes(file_get_contents($image));
         
                         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                            echo "test4";
                             $status = 'success';
                             $statusMsg = "File uploaded successfully.";
                             $BildUploadFunktioniert = true;
