@@ -42,11 +42,6 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `Zutaten` LONGTEXT NULL DEFAULT NULL,
   `nutzer_NutzerID` INT(11) NOT NULL,
   PRIMARY KEY (`GerichtID`),
-    FOREIGN KEY (`kategorie_idKategorie`)
-    REFERENCES `rezept`.`kategorie` (`idKategorie`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_gericht_nutzer1`
     FOREIGN KEY (`nutzer_NutzerID`)
     REFERENCES `rezept`.`nutzer` (`NutzerID`)
     ON DELETE NO ACTION

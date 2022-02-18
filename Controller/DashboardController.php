@@ -54,14 +54,14 @@ class DashboardController
 
     public function createRecipe() {
         $errorList = [];
+        $success = [];
         $dbAdatapter = \Core\DbAdapter::getInstance();
-        echo "test";
         if ($_SERVER["REQUEST_METHOD"] == Constants\HTTPMethods::HTTP_POST) {
             $BildUploadFunktioniert = false;
             // Bildupload
             // If file upload form is submitted 
     
-            echo "test2";
+            
             $target_dir = "main/uploads/";
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
         
@@ -70,30 +70,35 @@ class DashboardController
                     // Get file info 
                     $fileName = basename($_FILES["image"]["name"]);
                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-                    echo "test3";
-        
-        
                     // Allow certain file formats 
                     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                     if (in_array($fileType, $allowTypes)) {
-                        echo "test5";
                         $image = $_FILES['image']['tmp_name'];
                         $imgContent = addslashes(file_get_contents($image));
         
                         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                            echo "test4";
-                            $status = 'success';
-                            $statusMsg = "File uploaded successfully.";
                             $BildUploadFunktioniert = true;
                         } else {
                             $errorList[] = ErrorMessages::ERROR_FILE_UPLOAD_FAILED;
+                            $this->displayCreateRecipe($this->generateErrorMarkup($errorList));
+                            exit;
                         }
                     } else {
                         $errorList[] = ErrorMessages::ERROR_WRONG_FILE_FORMAT;
+                        $this->displayCreateRecipe($this->generateErrorMarkup($errorList));
+                        exit;
                     }
                 } else {
                     $errorList[] = ErrorMessages::ERROR_NO_PICTURE_SELECTED;
+                    $this->displayCreateRecipe($this->generateErrorMarkup($errorList));
+                    exit;
                 }
+            }
+
+
+            if (count($errorList) > 0) {
+                $this->displayCreateRecipe($this->generateErrorMarkup($errorList));
+                exit;
             }
         
             if($BildUploadFunktioniert == true)
@@ -105,16 +110,25 @@ class DashboardController
                 $Bild = $target_file;
         
                 $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, $_SESSION["id"]);
-                echo "yeah";
-            }
-
-            if (count($errorList) > 0) {
-                $this->displayCreateRecipe($this->generateErrorMarkup($errorList));
+                $success[] = "Rezept erfolgreich hochgeladen!";
+                $this->displayCreateRecipe($this->generateSuccessMarkup($success));
                 exit;
             }
 
+
         }
         $this->displayCreateRecipe();
+    }
+
+    private function generateSuccessMarkup(array $success)
+    {
+        $output = "";
+        foreach ($success as $successMessage) {
+
+            $output .= Core\SuccessHandler::generateMessage($successMessage);
+        }
+
+        return $output;
     }
 
     private function generateErrorMarkup(array $errorList)
@@ -157,11 +171,13 @@ class DashboardController
                 </div>';
     }
 
-    private function displayCreateRecipe() {
-        echo '            <div class="recipe-container">
+    private function displayCreateRecipe(string $errors = "") {
+        echo '<script src="../req/js/AddFormField.js"></script>            <div class="recipe-container">
         <div class="">
+        
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="col-md-9">
+                '. $errors .'
                     <h3>Rezeptname</h3>
                     <input required placeholder="Rezeptname" class="create-recipe-recipe-name" name="txtRezeptName" style="width: 100%;">
                     <br>
@@ -202,8 +218,10 @@ class DashboardController
     {
 
         $allRecp = \Core\DbAdapter::getInstance()->listRecipes();
+        $str = "";
         foreach ($allRecp as $recipe) {
-            return sprintf("<div class='line'></div>
+
+            $str .= sprintf("<div class='line'></div>
                     <div>
                          <h3 class='recipe-h3'>%s</h3>
                          <div class='row'>
@@ -217,6 +235,8 @@ class DashboardController
                      <button class='btn btn-blue recipe-btn' onclick=\"window.location.href='../../dashboard/recipe?id=%s'\">Rezept anschauen</button>
                  </div>", $recipe->getRezeptName(), $recipe->getBild(), $recipe->getRezeptBeschreibung(), $recipe->getID());
         }
+
+        return $str;
     }
 
 
