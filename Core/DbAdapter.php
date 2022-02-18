@@ -73,10 +73,10 @@ class DbAdapter
     /**
      * Neues Rezept in Datenbank laden.
      */
-    public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $category, $createdByUser)
+    public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $createdByUser)
     {
-        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, kategorie_idKategorie, nutzer_NutzerID) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $this->connector->prepare("INSERT INTO gericht (Name, Zubereitungsanleitung, Bild, Beschreibung, zutaten, nutzer_NutzerID) 
+        VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $name, $anleitung, $bild, $beschreibung, $zutaten, $createdByUser);
         $stmt->execute();
     }
