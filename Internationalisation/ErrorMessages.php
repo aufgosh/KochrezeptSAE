@@ -4,7 +4,7 @@ namespace Internationalisation;
 
 abstract class ErrorMessages {
     /**
-     * Definition von verschiedenen Error Benachrichtigungen, die dann ausgegeben werden können.
+     * Define Error Messages to output them if needed.
      */
     public const ERROR_PASSWORD_NOT_EQUAL = "Passworte stimmen nicht überein.";
     public const ERROR_FORM_NOT_COMPLETE = "Bitte das Formular ausfüllen.";

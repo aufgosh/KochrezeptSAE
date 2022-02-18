@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                 /**
-                 * Check ob Bild erlaubt ist.
+                 * Check if the Picture is allowed to use.
                  */
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     $status = 'success';
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     /**
-     * Wenn der Check des Bildes erfolgreich war, übergabe an die Datenbank. 
+     * If Picture check was successfull, Insert Data to Database.
      */
     if($BildUploadFunktioniert == true)
     {

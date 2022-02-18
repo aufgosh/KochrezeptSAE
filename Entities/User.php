@@ -10,7 +10,7 @@ namespace Entities {
         private $password;
 
         /**
-         * setter und getter für User.
+         * setter and getter for User
          */
         public function setID($id)
         {

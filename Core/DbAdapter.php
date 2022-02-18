@@ -74,7 +74,7 @@ class DbAdapter
     }
 
     /**
-     * Neues Rezept in Datenbank laden.
+     * Insert new Receipe into database.
      */
     public function insertRecipe($name, $anleitung, $bild, $beschreibung, $zutaten, $createdByUser)
     {
