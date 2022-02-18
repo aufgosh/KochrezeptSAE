@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
   `Beschreibung` VARCHAR(255) NULL DEFAULT NULL,
   `Bild` LONGBLOB NULL DEFAULT NULL,
   `Zutaten` LONGTEXT NULL DEFAULT NULL,
-  `kategorie_idKategorie` INT(11) NOT NULL,
   `nutzer_NutzerID` INT(11) NOT NULL,
   PRIMARY KEY (`GerichtID`),
     FOREIGN KEY (`kategorie_idKategorie`)
