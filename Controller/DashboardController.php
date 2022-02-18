@@ -217,7 +217,7 @@ class DashboardController
     private function listIndexRecipes($id = null)
     {
 
-        $allRecp = \Core\DbAdapter::getInstance()->listRecipes();
+        $allRecp = \Core\DbAdapter::getInstance()->listRecipes($id);
         $str = "";
         foreach ($allRecp as $recipe) {
 
