@@ -1,7 +1,6 @@
 var DefaultName = "zutat[]";
 var DefaultNameIncrementNumber = 0;
 
-// No further customizations required.
 function AddFormField(id, type, name, value, tag) {
     if (!document.getElementById && document.createElement) {
         return;

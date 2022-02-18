@@ -9,6 +9,9 @@ namespace Entities {
         private $username;
         private $password;
 
+        /**
+         * setter und getter für User.
+         */
         public function setID($id)
         {
             $this->id = $id;
