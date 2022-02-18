@@ -54,9 +54,9 @@ CREATE TABLE IF NOT EXISTS `rezept`.`gericht` (
  
 DEFAULT CHARACTER SET = utf8;
 INSERT INTO gericht
-  (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Zutaten`,`kategorie_idKategorie`,`nutzer_NutzerID`)
+  (`GerichtID`,`Name`,`Zubereitungsanleitung`,`Beschreibung`,`Bild`,`Zutaten`,`nutzer_NutzerID`)
   VALUES
-    (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","Zutaten oder so",1,1 );
+    (1,"Lasagne","Machen dies Machen das","Beschreibung Gericht","Bild","Zutaten oder so",1 );
 
  
 SET SQL_MODE=@OLD_SQL_MODE;
