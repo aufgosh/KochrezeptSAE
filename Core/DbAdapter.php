@@ -32,7 +32,7 @@ class DbAdapter
     }
 
     /**
-     * Abfrage des Users und speichern in einer Globalen Variable.
+     * Get User by ID and save into global variable.
      */
     public function getUserById($NutzerID)
     {
@@ -55,7 +55,7 @@ class DbAdapter
     }
 
     /**
-     * User über Namen Filtern und auslesen. 
+     * get User by Username.
      */
     public function getUserByUsername(string $username)
     {
@@ -85,7 +85,7 @@ class DbAdapter
     }
 
     /**
-     * Rezepte von der Datenbank holen und in Globale Variablen speichern.
+     * Get a list of all Recipes from the Database and save them in a global Variable.
      */
     public function listRecipes($id = null)
     {
@@ -116,7 +116,7 @@ class DbAdapter
     }
 
     /**
-     * ein betimmtes Rezept von der Datenbank holen und in globale Variable speichern.
+     * get a certain Receipe from the Database and save it into a global Variable.
      */
     public function getRecipeById($RecipeID)
     {
@@ -146,7 +146,7 @@ class DbAdapter
     }
 
     /**
-     * Aufzählung der Zutaten.
+     * List all Ingredients fpr a receipe.
      */
     public function listIngredients($ingredients)
     {
@@ -158,7 +158,7 @@ class DbAdapter
 
 
     /**
-     * Rezept von der Datenbank holen und in Globale Variablen speichern.
+     * Get a Receipe from database and save it into a variable.
      */
     public function getRecipe($RecipeID)
     {
@@ -189,7 +189,7 @@ class DbAdapter
     }
 
     /**
-     * Zugehörigen Nutzer zu einem Rezept aus der Datenbank holen.
+     * get the User for a Receipe from the Database.
      */
     public function getUserForReceipt($RecipeID)
     {
@@ -209,6 +209,9 @@ class DbAdapter
         return $User;
     }
 
+    /**
+     * check username and password with Database for login.
+     */
     public function loginUser($username, $password) {
 
         $stmt = $this->connector->prepare("SELECT * FROM nutzer WHERE User = ?");
@@ -219,6 +222,9 @@ class DbAdapter
 
     }
 
+    /**
+     * Insert Data from User to the Database for the regestraition. 
+     */
     public function registerUser($username, $password)
     {
         $password = hash('sha256', $password);
