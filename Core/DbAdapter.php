@@ -105,7 +105,7 @@ class DbAdapter
                 if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                     $allRecipes[$counter]->setBild($row["Bild"]);
                 } else {
-                    $allRecipes[$counter]->setBild("dashboard/uploads/default.jpg");
+                    $allRecipes[$counter]->setBild("./main/uploads/default.jpg");
                 }
 
 
@@ -138,7 +138,7 @@ class DbAdapter
             if ($row["Bild"] != "Bild" && $row["Bild"] != null) {
                 $recipe->setBild($row["Bild"]);
             } else {
-                $recipe->setBild("dashboard/main/uploads/default.jpg");
+                $recipe->setBild("./main/uploads/default.jpg");
             }
         }
 

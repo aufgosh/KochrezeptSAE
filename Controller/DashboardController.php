@@ -76,7 +76,7 @@ class DashboardController
                         $image = $_FILES['image']['tmp_name'];
                         $imgContent = addslashes(file_get_contents($image));
         
-                        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                        if (move_uploaded_file($_FILES["image"]["tmp_name"], "dashboard/".$target_file)) {
                             $BildUploadFunktioniert = true;
                         } else {
                             $errorList[] = ErrorMessages::ERROR_FILE_UPLOAD_FAILED;
