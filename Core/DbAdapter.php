@@ -150,10 +150,14 @@ class DbAdapter
      */
     public function listIngredients($ingredients)
     {
+        $str = "";
+
         $Zutaten = explode("|", $ingredients);
         foreach ($Zutaten as $zutate) {
-            return "<li>".$zutate."</li>";
+            $str .= "<li>".$zutate."</li>";
         }
+        
+        return $str;
     }
 
 
