@@ -223,17 +223,6 @@ class DbAdapter
         $stmt->bind_param("ss", $username, $password);
         return $stmt->execute();
     }
-    $errorhandler->displayMessage($message, $errorbool);
-//}
 
-    if ($alert != null) {
-        $message = $_POST["message"] = $alert;
-        $errorbool = true;
-    } else {
-        $message = $_POST["message"] = $success;
-        $errorbool = false;
-    }
-    $errorhandler->displayMessage($message, $errorbool);
-}
 
 }

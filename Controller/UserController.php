@@ -80,7 +80,7 @@ class UserController
                 }
             } else {
                 $errorList[] = ErrorMessages::ERROR_USER_ALREADY_EXISTING;
-                $this->displayRegisterForm($this->generateErrorMarkup());
+                $this->displayRegisterForm($this->generateErrorMarkup($errorList));
                 exit;
             }
         }
@@ -122,7 +122,7 @@ class UserController
                            placeholder="passwort">
                 </div>
                 <button type="submit" name="submit" class="btn btn-blue btn-login">Registrieren</button>
-                <a href="/account/login"><small id="register" class="form-text text-muted small-link">Bereits ein
+                <a href="/user/login"><small id="register" class="form-text text-muted small-link">Bereits ein
                         Konto?</small></a>
             </form>
         </div>
@@ -164,7 +164,7 @@ class UserController
                            placeholder="passwort">
                 </div>
                 <button type="submit" name="submit" class="btn btn-blue btn-login">Einloggen</button>
-                <a href="/account/register"><small id="register" class="form-text text-muted small-link">Noch kein
+                <a href="/user/register"><small id="register" class="form-text text-muted small-link">Noch kein
                         Konto?</small></a>
             </form>
         </div><!--end log form -->

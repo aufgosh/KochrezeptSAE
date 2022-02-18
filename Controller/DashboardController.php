@@ -3,7 +3,10 @@
 namespace Controller;
 
 use Core;
+use Core\Constants;
 use Entities\User;
+use Internationalisation\ErrorMessages;
+
 session_start();
 if (isset($_SESSION['username'])) {
 
@@ -14,6 +17,9 @@ if (isset($_SESSION['username'])) {
 class DashboardController
 {
 
+    public function Create_RecipeAction() {
+        $this->createRecipe();
+    }
 
     public function RecipeAction()
     {
@@ -46,11 +52,83 @@ class DashboardController
         echo '</div></div></div>';
     }
 
-    private function displayRecipe() {
+    public function createRecipe() {
+        $errorList = [];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $BildUploadFunktioniert = false;
+            // Bildupload
+            // If file upload form is submitted 
+            $status = $statusMsg = '';
+        
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        
+            if (isset($_POST["submit"])) {
+                if (!empty($_FILES["image"]["name"])) {
+                    // Get file info 
+                    $fileName = basename($_FILES["image"]["name"]);
+                    $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+        
+        
+        
+                    // Allow certain file formats 
+                    $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+                    if (in_array($fileType, $allowTypes)) {
+                        $image = $_FILES['image']['tmp_name'];
+                        $imgContent = addslashes(file_get_contents($image));
+        
+                        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                            $status = 'success';
+                            $statusMsg = "File uploaded successfully.";
+                            $BildUploadFunktioniert = true;
+                        } else {
+                            $errorList[] = ErrorMessages::ERROR_FILE_UPLOAD_FAILED;
+                        }
+                    } else {
+                        $errorList[] = ErrorMessages::ERROR_WRONG_FILE_FORMAT;
+                    }
+                } else {
+                    $errorList[] = ErrorMessages::ERROR_NO_PICTURE_SELECTED;
+                }
+            }
+        
+            if($BildUploadFunktioniert == true)
+            {
+                $RezeptName = $_POST['txtRezeptName'];
+                $RezeptBeschreibung = $_POST['txtRezeptBeschreiung'];
+                $Zutaten = join("|", $_POST['zutat']);
+                $RezeptZubereitung = $_POST['txtZubreitung'];
+                $Bild = $target_file;
+        
+                $dbAdatapter->insertRecipe($RezeptName, $RezeptZubereitung, $Bild, $RezeptBeschreibung, $Zutaten, $_SESSION["id"]);
+                echo "yeah";
+            }
+
+            if (count($errorList) > 0) {
+                $this->displayCreateRecipe($this->generateErrorMarkup($errorList));
+                exit;
+            }
+
+        }
+        $this->displayCreateRecipe();
+    }
+
+    private function generateErrorMarkup(array $errorList)
+    {
+        $output = "";
+        foreach ($errorList as $errorMessage) {
+
+            $output .= Core\ErrorHandler::generateMessage($errorMessage);
+        }
+
+        return $output;
+    }
+
+    private function displayRecipe(string $errors = "") {
         $dbAdapter = Core\DbAdapter::getInstance();
         $recipe = $dbAdapter->getRecipeById($_GET["id"]);
-
-        echo '<h1>'. $recipe->getRezeptName() . '</h1>
+        echo '        '. $errors .'
+        <h1>'. $recipe->getRezeptName() . '</h1>
                 <div class="recipe-container">
                     <div class="row">
                         <div class="col-md-4">
@@ -73,6 +151,47 @@ class DashboardController
                         </div>
                     </div>
                 </div>';
+    }
+
+    private function displayCreateRecipe() {
+        echo '            <div class="recipe-container">
+        <div class="">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="col-md-9">
+                    <h3>Rezeptname</h3>
+                    <input required placeholder="Rezeptname" class="create-recipe-recipe-name" name="txtRezeptName" style="width: 100%;">
+                    <br>
+                    <br>
+                    <h3>Rezept beschreibung</h3>
+                    <textarea required name="txtRezeptBeschreiung"></textarea>
+                    <br>
+                    <br>
+                    <h3>Benötigte Zutaten</h3>
+                    <ul class="recipe-ul-styling">
+                        <br>
+                        <div class="col-md-8">
+                            <div class="col-md-8" id="recipediv">
+                                <ul class="recipe-ul-styling" id="forfields">
+                                    <li><input type="text" name="zutat[]"></li>
+                                    <br>
+                                </ul>
+                                <a href="javascript:AddFormField(\'forfields\',\'text\',\'\',\'\',\'li\')">[Mehr Zutaten hinzufügen]</a>
+                            </div>
+                    </ul>
+                    <br>
+                    <h3>Zubereitung</h3>
+                    <textarea required name="txtZubreitung"></textarea>
+                    <br>
+                    <br>
+                    <h3>Bild hochladen</h3>
+                    <input type="file" name="image" required>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-blue btn-login" name="submit" value="Upload">Rezept erstellen</button>
+                </div>
+            </form>
+        </div>
+    </div>';
     }
 
     private function listIndexRecipes($id = null)

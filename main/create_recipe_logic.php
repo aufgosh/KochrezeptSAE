@@ -3,24 +3,6 @@ require_once "../Autoloader.php";
 $dbAdatapter = \Core\DbAdapter::getInstance();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $BildUploadFunktioniert = false;
-    /*
-    echo "<pre>";
-    var_dump($_POST);
-    echo "<pre>";
-    var_dump($_REQUEST);
-
-    echo "<pre>";
-    var_dump($_GET);
-
-    $a = join("|", $_POST['zutat']);
-
-    var_dump($a);
-    echo PHP_EOL;
-    $b = explode("|", $a);
-
-    var_dump($b[1]);
-    */
-
 
 
     // Bildupload

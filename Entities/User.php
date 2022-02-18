@@ -36,6 +36,11 @@ namespace Entities {
 
         public function getPassword()
         {
+            return $this->password;
+        }
+
+        public function UserIDFrontendCheck($id)
+        {
             if ($id == $_SESSION['id']) {
                 return "Dein Profil";
             } else {
